@@ -1,0 +1,187 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{cmap}                   % поиск в PDF
+\usepackage[T2A]{fontenc}           % кодировка
+\usepackage[utf8]{inputenc}         % кодировка исходного текста
+\usepackage[english,russian]{babel} % локализация и переносы
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  otherkeywords={*,...},           % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
+
+\author{Абдрашитова Юлия, Плотников Антон, гр. А3401}
+\title{Лабораторная работа 1}
+\subtitle{Консольные утилиты настройки сетевых компонентов в
+MS Windows 2000/XP/2003/2012 и Linux}
+\date{\today}
+
+\begin{document} % Конец преамбулы, начало текста.
+
+\maketitle
+
+\pagebreak
+
+\section{VirutalBox}
+
+\subsection{NAT}
+
+Принцип работы \emph{NAT} заключается в следующемем. Сервис \emph{NAT}
+перехватывает пакеты из гостевой ОС и заменяят IP-адрес гостевой ОС на адрес
+IP-адрес хоста.
+
+Таким образом VirtualBox с \emph{NAT} выполняет роль <<маршрутизатора>>.
+
+Очевидно такая система не доступна из вне, если доступ необходим то нужно
+пробросить порты.
+
+\subsection{Bridged}
+
+В этом режиме виртуальная машина работает так-же, как и все остальные
+компьютеры в сети. Адаптер выступает в роли моста между виртуальными и
+физическими сетями.
+
+\subsection{Internal Network}
+
+Режим \emph{Internal Network} представляет из себя <<программную сеть>>. Такую
+сеть могут, выборочно, <<видеть>> виртуальные машины VirtualBox. Примчем сеть не
+доступна для машин на хосте или внешней сети.
+
+\subsection{Что произойдёт, если у двух созданных виртуальных машин поменять
+местами образы жёстких дисков?}
+
+Eсли машины являются точными копиями, они запустятся в нормальном режиме,
+иначе будет выдана ошибка.
+
+\subsection{Для чего необходимы <<снимки>> виртуальных машин?}
+
+Для возможности сохранения и восстановления состояний машин.
+
+\subsection{Скриншот состояний машин}
+
+См рис.~\ref{img:shot}
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{shot}
+    \label{img:shot}
+    \end{figure}
+\section{Windows}
+
+\subsection{Как с помощью графической оболочки Windows можно запретить доступ
+через определенный сетевой интерфейс к ресурсам используемого компьютера? Как
+можно запретить используемому компьютеру доступ к ресурсам других компьютеров в
+сети Microsoft?}
+
+В \emph{Network and Shared Center} выбрать нужный интерфейс, нажать
+\emph{Properties}, далее отметить или снять маркеры с ресурсов.
+
+\subsection{Как с помощью ipconfig узнать адрес DNS, на который настроен ваш
+компьютер?}
+
+\emph{ipconfig /all} выведет всю информацию о сети.
+
+\subsection{Зачем нужна команда net use? Как с помощью этой утилиты подключить на
+локальный диск R: папку TEST на компьютере SRV (приведите командную строку)?}
+
+\emph{net use} -- это команда подключения к общим сетевым ресурсам или вывода
+информации о подключениях компьютера.
+
+\begin{center}
+    \emph{net use R: \textbackslash\textbackslash{}SRV\textbackslash{}TEST}
+\end{center}
+
+\subsection{Скрипт}
+
+Смотри листинг \ref{lst:win}.
+
+\begin{lstlisting}[label=lst:win,caption=Windows batch script,float]
+SET IP=192.168.1.10
+SET MASK=255.255.255.0
+SET GW=192.168.1.1
+SET DNS=192.168.1.254
+SET IFACE="%2"
+
+IF "%1"=="/d" (
+	netsh interface ip set addres %IFACE% source=dhcp
+	netsh interface ip set dns %IFACE% dhcp
+) ELSE (
+	IF "%1"=="/c" (
+		netsh interface ip set addres %IFACE% static addr=%IP% mask=%MASK% gateway=%GW%
+		netsh interface ip set dns %IFACE% static %DNS%
+	) ELSE (
+		ECHO "Use /d or /c keys"
+	)
+)
+\end{lstlisting}
+
+\section{Linux}
+
+\subsection{Скрипт}
+
+Смотри листинг \ref{lst:linux}.
+
+\begin{lstlisting}[label=lst:linux,caption=Linux script,float,language=bash]
+#!/bin/bash
+
+iface=$2
+ip=172.16.10.50
+mask=255.255.0.0
+gateway=172.16.0.1
+dns=172.16.255.254
+
+if [[ $1 == -d ]]; then
+    echo "Usig automatic dhcp config"
+    dhclient -r $iface
+    dhclient $iface
+elif [[ $1 == -c ]]; then
+    echo "Using custom properties"
+    ifconfig $iface $ip netmask $mask
+    route add default gw $gateway
+    echo "nameserver $dns" > /etc/reslove.conf
+else
+    echo "Use -d or -c"
+fi
+\end{lstlisting}
+
+\section{В чем назначение утилиты ping?}
+
+В проверке установления соединений в сетях \emph{TCP/IP}.
+
+
+\end{document} % Конец текста.

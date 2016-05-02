@@ -1,0 +1,15 @@
+.idea
+*.iml
+*.pdf
+*.swp
+*.swo
+*.exe
+.svn
+build
+out
+gradle
+.gradle
+*.log
+*.fdb_latexmk
+*.aux
+*.fls

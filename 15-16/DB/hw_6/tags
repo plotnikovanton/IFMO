@@ -1,0 +1,14 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+Blog.BlogCreationDateIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX BlogCreationDateIdx    ON Blog                     (CreationDate);$/;"	i	language:SQL
+Blog.BlogIdIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX BlogIdIdx              ON Blog         USING hash  (blogId);$/;"	i	language:SQL
+Blog.BlogNameIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX BlogNameIdx            ON Blog                     (name);$/;"	i	language:SQL
+Blog.OwnerIdIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX OwnerIdIdx             ON Blog         USING hash  (OwnerId);$/;"	i	language:SQL
+BlogPost.BlogPostIdIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX BlogPostIdIdx          ON BlogPost     USING hash  (blogId);$/;"	i	language:SQL
+BlogPost.PosterIdIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX PosterIdIdx            ON BlogPost     USING hash  (posterId);$/;"	i	language:SQL
+BlogReader.BlogReaderIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX BlogReaderIdx          ON BlogReader   USING hash  (readerId);$/;"	i	language:SQL
+Login.LoginIdIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX LoginIdIdx             ON Login                    (id);$/;"	i	language:SQL
+Login.LoginIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX LoginIdx               ON Login        USING hash  (PersonalDataId);$/;"	i	language:SQL
+Login.Login_Idx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX Login_Idx              ON Login                    (login, passMd5);$/;"	i	language:SQL
+PersonalData.BirthDateIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX BirthDateIdx           ON PersonalData             (birthDate);$/;"	i	language:SQL
+PersonalData.LastFirstNameIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX LastFirstNameIdx       ON PersonalData             (LastName, FirstName);$/;"	i	language:SQL
+PersonalData.PersonIdIdx	/home/anton/ITMO/15-16/DB/hw_6/queries_boosted.sql	/^CREATE INDEX PersonIdIdx            ON PersonalData USING hash  (id);$/;"	i	language:SQL

@@ -1,0 +1,13 @@
+       awesome - потрясающий оконный менеджер
+       awesome [-v | --version] [-h | --help] [-c | --config FILE] [-k | --check]
+       awesome — это оконный менеджер для X. Он управляет окнами, размещая их в
+       Окна в awesome сгруппированы по тегам. Каждое окно может быть помечено
+       В awesome можно создавать вибоксы (виджет + бокс), в которых можно
+           $XDG_CONFIG_HOME/awesome/rc.lua.
+           Перезапустить awesome.
+           Выйти из awesome.
+       awesome настраивается файлом $XDG_CONFIG_HOME/awesome/rc.lua (надо
+       awesome может быть перезапущен сигналом SIGHUP.
+       awesomerc(5) awesome-client(1)
+       Само собой разумеется, что в awesome багов нет. Но могут встречаться
+       http://awesome.naquadah.org

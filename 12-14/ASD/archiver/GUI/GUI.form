@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.ifmo.enf.plotnikov.t04_lang.GUI.GUI">
+  <grid id="27dc6" binding="mainPane" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="556" height="400"/>
+    </constraints>
+    <properties>
+      <preferredSize width="600" height="500"/>
+      <requestFocusEnabled value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="dd72a" binding="outputPanel" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="1a39d" class="javax.swing.JTextField" binding="output">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <preferredSize width="200" height="23"/>
+              <text value="archive.zip"/>
+            </properties>
+          </component>
+          <component id="ae800" class="javax.swing.JButton" binding="pack">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="add-files-to-archive.png"/>
+              <text value="Pack"/>
+            </properties>
+          </component>
+          <component id="12872" class="javax.swing.JSlider" binding="level">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <maximum value="9"/>
+              <minorTickSpacing value="1"/>
+              <paintTicks value="true"/>
+              <value value="2"/>
+            </properties>
+          </component>
+          <component id="471c4" class="javax.swing.JButton" binding="dir">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="open.png"/>
+              <text value=""/>
+              <toolTipText value="Select path"/>
+            </properties>
+          </component>
+          <hspacer id="5eefd">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+        </children>
+      </grid>
+      <scrollpane id="76850" binding="scrollPane">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <autoscrolls value="false"/>
+          <horizontalScrollBarPolicy value="30"/>
+          <verticalScrollBarPolicy value="20"/>
+        </properties>
+        <border type="none" title="root"/>
+        <children>
+          <grid id="6cdfb" binding="scrollWrap" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="ce548" binding="curDir" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <vspacer id="fc1fd">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+            </children>
+          </grid>
+        </children>
+      </scrollpane>
+      <grid id="f0256" binding="navigation" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="eef6b" class="javax.swing.JButton" binding="add">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <hideActionText value="false"/>
+              <icon value="add.png"/>
+              <iconTextGap value="0"/>
+              <text value=""/>
+              <verifyInputWhenFocusTarget value="true"/>
+            </properties>
+          </component>
+          <hspacer id="fd76f">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="adbf2" class="javax.swing.JButton" binding="mkdir">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="folder-new.png"/>
+              <iconTextGap value="0"/>
+              <requestFocusEnabled value="true"/>
+              <selected value="false"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="b9af9" class="javax.swing.JButton" binding="up">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="go-up.png"/>
+              <iconTextGap value="0"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="c2f2e" class="javax.swing.JProgressBar" binding="progressBar" custom-create="true">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

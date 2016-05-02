@@ -1,0 +1,82 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\author{Плотников Антон}
+\title{Лабораторная работа \#5}
+\date{\today}
+
+
+\theoremstyle{definition}
+\newtheorem*{given}{Дано}
+\newtheorem*{solution}{Решение}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+
+\begin{given}
+    \begin{gather*}
+        X \thicksim B(p);\; n = 100, k_n = 37;\; \gamma = 0.95;\;
+        H_0 : p = p_0 = 0.45;\; H_1 : p \neq p_0;\; \alpha = 0.05
+        \\ 
+        I(p) = \frac{1}{p(1-p)}
+    \end{gather*}
+\end{given}
+
+\begin{solution}
+    Построим доверительный интервал.
+
+    $ p_n^* = \frac{k_n}{n} $ -- ОМП параметра $p$. $I(p)$ вычислима в точке
+    $p_n^*$.
+
+    \begin{gather*}
+        \frac{p_n^* - p}{\Delta(p)} \xrightarrow[n \rightarrow \infty]{} \xi
+        \thicksim N(0,1)
+        \\
+        \left. \begin{matrix}
+            p_n^* \thicksim N(p, \frac{1}{n \cdot I(p)}) \\
+            D = \Delta^2 = \frac{1}{I(p)}
+    \end{matrix}\right| \Rightarrow \sigma_x(k_n) = \sqrt{D_x(k_n)} =
+    \frac{\sqrt{p(1-g)}}{\sqrt{n}}
+    \\
+    P(|\xi| < t_{\gamma}) = \gamma, \text{ где } t_{\gamma} \text{ квантиль функции распределения } |\xi|
+    \end{gather*}
+
+    Асимптотически доверительный интервал:
+    \begin{gather*}
+        P\left(\left|\frac{k_n}{n} - p\right| \cdot
+        \frac{\sqrt{n}}{\sqrt{p(1-p)}} < 1.96\right) =
+        P\left(|0.37-p| <  \underbrace{\frac{1.96 \cdot
+        \sqrt{0.37\cdot0.63}}{\sqrt{100}}}_{0.09}\right) \Rightarrow
+        \\
+        \Rightarrow p \in (0.28;\; 0.46) \text{ с надежностью } \gamma = 0.95
+    \end{gather*}
+    
+    Проверка гипотезы:
+
+    $H_1$ -- двусторонняя гипотеза
+
+    \begin{gather*}
+        L = \sqrt{n\cdot I(p)} |p_n^* - p_0| = \frac{\sqrt{100}}{0.45 \cdot
+        0.55} \cdot |0.37-0.45| = 1.6
+        \\
+        \psi^*_{n,\alpha} = \begin{cases}
+            0, & L < t_{\alpha} \\
+            1, & L \geq t_{\alpha}
+        \end{cases}
+        \Rightarrow \psi^*_{n, \alpha} = 0
+    \end{gather*}
+    отсюда принимается $H_0$.
+
+\end{solution}
+
+\end{document}

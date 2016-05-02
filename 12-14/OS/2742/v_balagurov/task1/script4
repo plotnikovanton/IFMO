@@ -1,0 +1,7 @@
+#!/bin/bash
+TOSEARCH=$1
+grep $1 fileToSearch
+
+
+
+

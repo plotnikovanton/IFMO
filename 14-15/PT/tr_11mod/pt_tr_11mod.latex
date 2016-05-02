@@ -1,0 +1,189 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[left=2cm,right=2cm,top=0.5cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{diagbox}
+\usepackage[T1, T2A]{fontenc}	
+\usepackage[utf8]{inputenc}	
+\usepackage[english, russian]{babel}
+\usepackage{graphicx}
+\graphicspath{{plot/}}
+\allowdisplaybreaks[1]
+\usepackage{gnuplottex}
+
+
+\author{Плотников Антон, г. 3743}
+\title{Типовой расчет по теории вероятности за 11 модуль.}
+\date{\today}
+
+\begin{document} % Конец преамбулы, начало текста.
+
+\maketitle
+\section*{Задача 1}
+\subsection*{Условие}
+
+Функция распределения $F_X(t)$ случайной величины $X$ имеет вид:
+\begin{equation*}
+    F_X(t) = 
+    \begin{cases}
+        1-exp(-3t), &t\geq 0, 
+        \\
+        0, & t < 0.
+    \end{cases}
+\end{equation*}
+
+Случайные величины $Y=\sqrt{x}$ и $Z=-2X+3$ являются функцими от случайной величены $X$.
+
+\begin{enumerate} 
+    \item Найти плотность рспределения $f_Y(v)$
+    \item Найти моменты $EZ$, $DZ$, $cov(X,Z)$
+\end{enumerate}
+
+\subsection*{Решение}
+\subsubsection*{Найти плотность рспределения $f_Y(v)$:}
+
+$$D_v = \{x: \sqrt{x} < v \}$$
+
+При $v < 0$ $D_Y=0$ следовательно $F_Y = P \{Y \in D_v\} = 0$ и $f_y(v) = F'_Y(v)=0$
+
+При $v > 0$ $D_v = \{x: x<v^2\}$
+
+\begin{gather*}
+    F_Y(v)=P\{X<v^2\}=F_X(v^2)=1-exp(-3v^2), \\
+    f_y(v)=F'_y(v)=6v \cdot exp(-3v^2)
+\end{gather*}
+
+Таким обазом
+
+\begin{gather*}
+    F_Y(v)=
+    \begin{cases}
+        1-exp(-3v^2), & v \geq 0, \\
+        0, & v < 0.
+    \end{cases} \\
+    f_y(v)=
+    \begin{cases}
+        6v \cdot exp(-3v^2), & v \geq 0, \\
+        0, & v < 0.
+    \end{cases}
+\end{gather*}
+
+\subsubsection*{Найти моменты $EZ$, $DZ$, $cov(X,Z)$:}
+\begin{gather*}
+    \mathbf{E}X = \int\limits_{0}^{\infty}x\cdot 3e^{-3x}dx = \frac{1}{3} \\
+    \mathbf{E}X^2 = \int\limits_{0}^{\infty}x^2\cdot 3e^{-3x}dx = \frac{2}{9} \\
+    \mathbf{D}X = \frac{2}{9} - (\frac{1}{3})^2 = \frac{1}{9} \\
+    \mathbf{E}Z = \mathbf{E}[-2X+3] = -2\mathbf{E}X + 3 = \frac{7}{3}\\
+    \mathbf{D}Z = \mathbf{D}[-2X+3] = 4\mathbf{D}X = \frac{4}{9} \\
+    cov(X,Z) = cov(X, -2X+3) = -2\cdot cov(X, X)= -2\cdot \mathbf{D}X = -\frac{2}{9}
+\end{gather*}
+
+\section*{Задача 2}
+\subsection*{Условие}
+
+Распределение системы дискретных случайных величин $(X,Y)$ задано таблицей
+
+\begin{center}
+    \begin{tabular}{c|c|c|c}
+        \diagbox{Y}{X} & -2    & -1    & 1 \\
+        \hline
+        -1  & 0.1   & 0.15  & 0.15 \\
+        \hline
+        0   & 0.05  & 0.15  & 0.2 \\
+        \hline
+        2   & 0     & 0.1   & 0.1
+    \end{tabular}
+\end{center}
+
+Найти условное математическое ожидание $\mathbf{E}(X|Y)$ и $\mathbf{E}(Y|X)$, найти математическое ожидание этих случайных величин, проверить формулу полного математического ожидания. Построить линейную регрессию $X$ на $Y$ и $Y$ на $X$ и вычислить значение этих функций в точках $x_i$, $y_j$.
+
+\subsection*{Решение}
+\subsubsection*{Условное математическое ожидание}
+
+\begin{gather*}
+    \mathbf{E}(X|Y)=\mathbf{E}(X|Y=y_1),\ldots,\mathbf{E}(X|Y=y_4) \\
+    \mathbf{E}(X|Y=y_i)=\sum\limits_{j=1}^{3}x_j\cdot\mathbf{P}(X=x_j|Y=y_i)=\sum\limits_{j=1}^{3}x_j\cdot \frac{\mathbf{P}(X=x_j,Y=y_i)}{\mathbf{P}(Y=y_i)} \\
+    \mathbf{E}(X|Y=-1)=\frac{0.1 \cdot -2 + 0.15 \cdot -1 + 0.15 \cdot 1}{0.1+0.15+0.15} = -\frac{0.2}{0.4} \\
+    \mathbf{E}(X|Y=0)=\frac{0.05 \cdot -2 + 0.15 \cdot -1 + 0.2 \cdot 1}{0.05+0.15+0.2} = -\frac{0.05}{0.4} \\
+    \mathbf{E}(X|Y=2)=\frac{-2 \cdot 0 + 0.1 \cdot -1 + 0.1 \cdot 1}{0+0.1+0.1} = 0 \\
+    \mathbf{E}(Y|X)=\mathbf{E}(Y|X=x_1),\ldots,\mathbf{E}(Y|X=x_3) \\
+    \mathbf{E}(Y|X)=\sum\limits_{j=1}^{3}y_j\cdot \mathbf{P}(X=x_i, Y=y_i)=\sum\limits_{j=1}^{4}y_j\cdot \frac{\mathbf{P}(Y=y_i, X=x_j)}{\mathbf{P}(X=x_i)} \\
+    \mathbf{E}(Y|X=-2) = \frac{-1\cdot 0.1 + 0\cdot 0.05 + 2\cdot 0}{0.1+0.05+0} = \frac{-0.1}{0.15} \\
+    \mathbf{E}(Y|X=-1) = \frac{-1\cdot 0.15 + 0\cdot 0.15 + 2\cdot 0.1}{0.15+0.15+0.1} = \frac{0.05}{0.4} \\
+    \mathbf{E}(Y|X=1) = \frac{-1\cdot 0.15 + 0\cdot 0.2 + 2\cdot 0.1}{0.15+0.02+0.1} = \frac{0.05}{0.45} \\
+\end{gather*}
+
+\subsubsection*{Математическое ожидание X и Y}
+\begin{gather*}
+    \mathbf{E}(X) = -2\cdot (0.1 + 0.05 + 0) -1\cdot (0.15+0.15+0.1) + 1\cdot (0.15+0.2+0.1) = -0.25\\
+    \mathbf{E}(Y) = -1\cdot (0.1 + 0.15 + 0.15) + 0\cdot (0.05 + 0.15 + 0.2) + 2\cdot (0+0.1+0.1) = 0 \\
+\end{gather*}
+
+\subsubsection*{Проверка формулы полного математического ожидания}
+
+Согласно формуле полного математического ожидания: 
+$$ \mathbf{E}[\mathbf{E}(A|B)] = \sum\limits_{i=1}^{n}\mathbf{E}(X|Y=y_i)\mathbf{P}(Y=y_i) = \mathbf{E}(A) $$
+
+\begin{gather*}
+    \mathbf{E}[\mathbf{E}(X|Y)] = -\frac{0.2}{0.4}\cdot 0.4 -\frac{0.05}{0.4}\cdot 0.4 = -0.25 = \mathbf{E}(X) \\
+    \mathbf{E}[\mathbf{E}(Y|X)] = -\frac{0.1}{0.15}\cdot 0.15 + \frac{0.05}{0.4}\cdot 0.4 + \frac{0.05}{0.45}\cdot 0.45 = 0 = \mathbf{E}(Y)
+\end{gather*}
+
+\subsubsection*{Регрессия}
+
+\begin{gather*}
+    cov(X,Y) = \sum\limits_{i=1}^{3}\sum\limits_{j=1}^{3} x_i y_j p_{i,j} - \mathbf{E}(X) \mathbf{E}(Y) = 0.2 \\
+    \mathbf{D}X=\mathbf{E}X^2-(\mathbf{E}X)^2 = 4\cdot (0.1+0.05) + 1 \cdot (0.15+0.15+0.1) \\ \qquad \qquad + 1 \cdot (0.15 + 0.2 + 0.1) - (-0.25)^2 = 1.3 - 0.0625 = 1.2375 \\
+    \mathbf{D}Y = 1\cdot (0.1+0.15+0.15) + 4 \cdot (0.1 + 0.1) - 0^2 = 1.2 \\
+    \sigma_X = \sqrt{\mathbf{D}X} = 1.11243 \\ 
+    \sigma_Y = \sqrt{\mathbf{D}Y} = 1.095445 \\
+    r_{XY} = \frac{cov(X,Y)}{\sigma_X \sigma_Y} = \frac{0.2}{1.11243 \cdot 1.095445} = 0.164122\\
+\end{gather*}
+
+\subsubsection*{Линейная среднеквадратичная регрессия $Y$ на $X$}
+$$
+Y = \alpha + \beta X,\text{где } \alpha = \mathbf{E}Y-r_{XY}\frac{\sigma_Y}{\sigma_X}\mathbf{E}X,\quad \beta = r_{XY}\frac{\sigma_Y}{\sigma_X}
+$$
+\begin{gather*}
+    Y = 0.404 + 0.162X \\
+    Y = 0.404 + 0.162(-2) = 0.08 \\
+    Y = 0.404 + 0.162(-1) = 0.242 \\
+    Y = 0.404 + 0.162(1) = 0.566 
+\end{gather*}
+
+\subsubsection*{Линейная среднеквадратичная регрессия $X$ на $Y$}
+$$
+X = \alpha + \beta Y,\text{где } \alpha = \mathbf{E}X-r_{XY}\frac{\sigma_X}{\sigma_Y}\mathbf{E}Y,\quad \beta = r_{XY}\frac{\sigma_X}{\sigma_Y}
+$$
+
+\begin{gather*}
+    X = -0.25 + 0.167Y\\
+    X = -0.25 + 0.167(-1) = -0.417 \\
+    X = -0.25 + 0.167(0) = -0.25 \\
+    X = -0.25 + 0.167(2) = 0.048
+\end{gather*}
+
+\begin{figure}[h]
+    \centering
+        \begin{gnuplot}
+            set terminal epslatex color size 15cm,10cm
+            
+            set grid ytics lc rgb '#555555' lw 1 lt 0
+            set grid xtics lc rgb '#555555' lw 1 lt 0
+
+            set style line 3 lc rgb 'black' pt 7 ps 2
+
+            plot (0.404 + 0.162 * x) title 'Регрессия Y на X'\
+            , ((x+0.25)/0.167) title 'Регрессия X на Y'\
+            , "<echo '-2 -1'" w p ls 3 notitle \
+            , "<echo '-2 0'" w p ls 3 notitle \
+            , "<echo '-2 2'" w p ls 3 notitle \
+            , "<echo '-1 -1'" w p ls 3 notitle \
+            , "<echo '-1 0'" w p ls 3 notitle \
+            , "<echo '-1 2'" w p ls 3 notitle \
+            , "<echo '1 -1'" w p ls 3 notitle \
+            , "<echo '1 0'" w p ls 3 notitle \
+            , "<echo '1 2'" w p ls 3 notitle \
+    \end{gnuplot}
+\end{figure}
+\end{document} 

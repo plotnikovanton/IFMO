@@ -1,0 +1,19 @@
+[1;36m                   -`[0m
+[1;36m                  .o+`                 [1;36manton[0m[1m@[0m[1;36march-Laptop[0m
+[1;36m                 `ooo/                [1;36m OS:[0m Arch Linux [0m
+[1;36m                `+oooo:               [1;36m Kernel:[0m x86_64 Linux 3.13.5-1-ARCH[0m
+[1;36m               `+oooooo:              [1;36m Uptime:[0m 5h 30m[0m
+[1;36m               -+oooooo+:             [1;36m Packages:[0m 1124[0m
+[1;36m             `/:-:++oooo+:            [1;36m Shell:[0m bash 4.2.45[0m
+[1;36m            `/++++/+++++++:           [1;36m Resolution:[0m 1366x768[0m
+[1;36m           `/++++++++++++++:          [1;36m WM:[0m Awesome[0m
+[1;36m          `/+++o[36moooooooo[1;36moooo/`        [1;36m WM Theme:[0m multicolor[0m
+[36m         [1;36m./[36mooosssso++osssssso[1;36m+`       [1;36m GTK Theme:[0m MediterraneanDarkest [GTK2], Adwaita [GTK3][0m
+[36m        .oossssso-````/ossssss+`      [1;36m Icon Theme:[0m Moka[0m
+[36m       -osssssso.      :ssssssso.     [1;36m Font:[0m Cantarell 11[0m
+[36m      :osssssss/        osssso+++.    [1;36m CPU:[0m Intel Core i5-3317U CPU @ 2.6GHz[0m
+[36m     /ossssssss/        +ssssooo/-    [1;36m RAM:[0m 2471MB / 7770MB[0m
+[36m   `/ossssso+/:-        -:/+osssso+-  [0m
+[36m  `+sso+:-`                 `.-/+oso: [0m
+[36m `++:.                           `-/+/[0m
+[36m .`                                 `/[0m

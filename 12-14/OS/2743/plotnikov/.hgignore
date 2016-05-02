@@ -1,0 +1,9 @@
+<<<<<<< local
+*.out
+=======
+synatax: glob
+
+*.o
+>>>>>>> other
+*.swp
+*.swo

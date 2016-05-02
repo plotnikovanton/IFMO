@@ -1,0 +1,205 @@
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage[left=2cm,right=2cm,top=1cm,bottom=3cm,bindingoffset=0cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{diagbox}
+\usepackage[T1, T2A]{fontenc}	
+\usepackage[utf8]{inputenc}	
+\usepackage[english, russian]{babel}
+\usepackage{graphicx}
+\graphicspath{{../lab1/}}
+\usepackage{gnuplottex}
+\allowdisplaybreaks[1]
+\usepackage{listings}
+\usepackage{color}
+\lstset {numbers = left, numberstyle = \tiny,
+    emph = {abs, addpath, angle, ceil, clc, clear, conj, cos, diff,
+    end, else, elseif, erfc, error, exp, fclose, fft, fftshift,
+    fopen, flipdim, fliplr, floor, for, fprintf, function, hold,
+    if, ifft, imag, interp1, length, linspace, log10, log2, max,
+    mean, min, num2str, ones, pause, plot, pi, prod, pwelch, rand,
+    randn, real, rem, reshape, roots, round, save, sin, size, sqrt,
+    sum, tic, toc, unwrap, var, while, zeros},
+    emphstyle = \bfseries,
+    morecomment = [l] [\itshape] {\%},
+    morecomment = [l] [\slshape] {disp},
+    }
+
+\author{Плотников Антон, г. 3743}
+\title{Типовой расчет по теории вероятности за 12 модуль.}
+\date{\today}
+
+\begin{document} % Конец преамбулы, начало текста.
+\maketitle
+
+\section*{Задача 1}
+\subsection*{Условие}
+Система случайных величин $(X,Y)$ равновероятно распределена в треугольнике с вершинами $A(-1,1)\, B(1,2)\, C(1, 1)$. Найти плотности компонент $X$ и $Y$, коэффициент корреляции $r(X,Y)$, регрессию $m_{Y|X}(x)$ и $m_{X|Y}(y)$ изобразить эти линии графически.
+
+\subsection*{Решение}
+Вычислим плотности вероятностей:
+\begin{gather*}
+    f_{X,Y}(x,y)=
+    \begin{cases}
+        \frac{1}{S_{\triangle_{ABC}}} = 1, & (x,y) \in \triangle_{ABC} \\
+        0, & (x,y) \notin \triangle_{ABC}
+    \end{cases} \\
+    f_X(x) = \int\limits_{-\infty}^{\infty}f_{X,Y}(x,y) dy =
+    \begin{cases}
+        \displaystyle\int\limits_{1}^{\frac{1}{2}x+\frac{3}{2}}dy = \frac{1}{2}x + \frac{1}{2}, & x \in [-1,1]\\
+        0,&  \text{otherwise}
+    \end{cases}\\
+    f_Y(y) = \int\limits_{-\infty}^{\infty} f_{X,Y}(x,y)dx = 
+    \begin{cases}
+        \displaystyle \int\limits^{1}_{2y-3}dx = 4 - 2y, & y \in [1, 2]\\
+        0, & \text{otherwise}
+    \end{cases}
+\end{gather*}
+
+Вычислим $r(X,Y)$:
+\begin{gather*}
+    \mathbf{E}X = \int\limits_{-\infty}^{\infty} x f_X(x) dx = \int\limits_{-1}^{1} (\frac{1}{2}x^2 + \frac{1}{2}x) dx = \frac{1}{3}\\
+    \mathbf{E}Y = \int\limits_{-\infty}^{\infty} y f_Y(y) dy = \int\limits_{1}^{2} (2y^2 -4y) dy = \frac{4}{3}\\
+    \mathbf{E}X^2 = \int\limits_{-1}^{1}(\frac{1}{2}x^3+\frac{1}{2}x^2)dx = \frac{1}{3}\\
+    \mathbf{E}Y^2 = \int\limits_{1}^{2}(2y^3-4y^2)dy = \frac{11}{6} \\
+    \begin{aligned}[c]
+        \mathbf{D}X = \frac{1}{3} - (\frac{1}{3})^2 = \frac{2}{9} \qquad\qquad & \sigma_X=\sqrt{\mathbf{D}X} \approx 0.47\\
+        \mathbf{D}Y = \frac{11}{6} - (\frac{4}{3})^2 = \frac{1}{18} \qquad\qquad & \sigma_Y=\sqrt{\mathbf{D}Y} \approx 0.24
+    \end{aligned} \\
+    \mathbf{E}(XY) = \int\limits_{1}^{2}\int\limits_{2y-3}^{1}xydxdy = \int\limits_{1}^2(2y-y^2)dy = \frac{2}{3} \\
+    cov(X,Y)=\mathbf{E}(XY)-\mathbf{E}X\cdot \mathbf{E}Y = \frac{2}{3} - \frac{1}{3}\cdot \frac{4}{3} = \frac{2}{9} \\
+    r(X,Y) = \frac{cov(X,Y)}{\sigma_X\sigma_Y}\approx 1.97
+\end{gather*}
+
+Регрессия :
+\begin{gather*}
+    m'_{Y|X}=\mathbf{E}Y+r(X,Y)\frac{\sigma_Y}{\sigma_X}(X-\mathbf{E}X) = \frac{4}{3}+1.97\cdot \frac{0.24}{0.47}(X-\frac{1}{3}) \approx 1.01X + 1\\
+    m'_{X|Y}=\mathbf{E}X+r(X,Y)\frac{\sigma_X}{\sigma_Y}(Y-\mathbf{E}Y) = \frac{1}{3}+1.97\cdot \frac{0.47}{0.24}(Y-\frac{4}{3}) \approx 3.86Y - 4.81\\
+    m_{Y|X}=\mathbf{E}(Y|X)=\int\limits_{-\infty}^{\infty}yf_{Y|X}(y|x)dy = \int \limits_{1}^{\frac{1}{2}x+\frac{3}{2}} \frac{y}{\frac{1}{2}x+\frac{1}{2}}dy = \frac{x+5}{4}\\
+m_{Y|X}=\mathbf{E}(X|Y)=\int\limits_{-\infty}^{\infty}xf_{X|Y}(x|y)dy = \int \limits_{2y-3}^{1} \frac{x}{4-2y}dy = y - 1
+\end{gather*}
+
+\begin{figure}[h]
+    \centering
+        \begin{gnuplot}
+            set terminal epslatex color size 15cm,10cm
+            
+            set grid ytics lc rgb '#555555' lw 1 lt 0
+            set grid xtics lc rgb '#555555' lw 1 lt 0
+
+            set xrange [-2:2]
+
+            plot (x+1) title 'Регрессия Y на X'\
+            , ((x+5)/4) title 'Регрессия X на Y'\
+            , "<echo '-1 1\n 1 2\n 1 1\n -1 1'" u 1:2 w linesp lc rgb "black" notitle # AC
+    \end{gnuplot}
+\end{figure}
+\section*{Задание 2.1}
+\subsection*{Условие}
+Методом Монте-Карло оценить объем части тела $F(\overline{x}) \leq 0.94$, заключённой в $5$-мерном кубе с ребром $[0, 1]$. Функция имеет вид $F(\overline{x}) = f(x_1)+f(x_2)+\dots+f(x_5)$.Для выбран-ной надежности $\gamma \geq 0.95$ указать асимптотическую точность оценивания и построить асимптотический доверительный интервал для истинного значения объема. 
+
+Используя объем выборки $n=10^4$ и $n=10^6$ оценить скорость сходимости и показать, что доверительные интервалы пересекаются.
+
+$f(x) = exp(-3x)$
+\subsection*{Решение}
+Геометрическая вероятность $\forall D \in \Omega : p(D) = \frac{\mu(D)}{\mu(\Omega)}, \mu(D)=p(D)\mu(\Omega)$
+
+%$\xi \sim B_{1,p}$, то $\frac{\xi_1+\dots+\xi_n}{n} \xrightarrow{n\to \infty} p(A)$, т.е. $\frac{K_n}{n} = \hat{p}_n$ - частота является оценкой $p(A)$.
+
+%Случайно выберем $n$ точек из $\Omega$. Любая точка имеет $B_{1,p} \Rightarrow \mu(D) \Leftrightarrow \frac{K_n}{n}\mu(\Omega)$. Таким образом получаем численную оченку объема при больших $n$.
+
+\begin{gather*}
+    \hat{\sigma}_n^2 = \frac{1}{n-1}\sum\limits_{i=1}^{n}(X_i-\overline{X_n})^2 \text{-- несмещенная оценка дисперии} \\ 
+    \mathbf{E}\xi = p; \mathbf{D}\xi=pq; \sigma = \sqrt{pq} \Leftrightarrow \sqrt{\hat{p}_n(1-\hat{p}_n)} = \hat{\sigma}_n \\
+        (\overline{X_n}-\delta_n, \overline{X_n}+\delta_n) \text{-- асимптотически доверительный интервал надежности $\gamma$, где}\\
+        \delta_n = \frac{t_{\frac{1+\gamma}{2}}\hat{\sigma}_n }{\sqrt{n}}
+\end{gather*}
+
+Код программы на языке Octave:
+\lstinputlisting[language=Octave]{../lab1/lab1_1.m}
+
+При $n = 10^4$:
+\begin{gather*}    
+v =  0.13250 \\
+T =  2.3263 \\
+d =  0.0078875 \\
+interval = [0.12461:   0.14039]
+\end{gather*}
+
+При $n = 10^6$:
+\begin{gather*}
+v =  0.13323 \\
+T =  2.3263 \\
+d =    7.9055e-04 \\
+interval = [0.13244 :  0.13402]
+\end{gather*}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{hist1}
+\end{figure}
+
+\section*{Задача 2.2}
+\subsection*{Условие}
+Аналогично построить оценку интегралов и для выбранной надежности указать ассимптотическую точность оценивания и построить асимптотический доверительный интервал для истиного значения интеграла.
+
+\subsection*{А) $\int\limits_{1}^{3} \frac{log(4-x)}{(x+2)} dx$}
+
+\begin{equation*}
+    \int\limits_{1}^{3} \frac{log(4-x)}{(x+2)} dx = (b-a)\bigg(\frac{1}{(b-a)}\int\limits_{1}^{3} \frac{log(4-x)}{(x+2)} dx\bigg) = (b-a)\mathbf{E}\bigg(\frac{log(4-x)}{(x+2)} dx \bigg)
+\end{equation*}
+
+Листинг решения:
+\lstinputlisting[language=Octave, firstline=6, lastline=23]{../lab1/lab1_2.m}
+При $n=10^4$:
+\begin{gather*}
+dM =  0.0020001\\
+I =  0.35549\\
+dL =    2.0411e-04\\
+ans =    2.0411e-04\\
+interval = [  0.35528 :  0.35569] 
+\end{gather*}
+При $n=10^6$:
+\begin{gather*}
+dM =    2.0020e-04 \\
+I =  0.35349\\
+dL =    2.0449e-05\\
+ans =    2.0449e-05\\
+interval = [ 0.35347 :  0.35351]
+\end{gather*}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{hist2}
+\end{figure}
+
+\subsection*{Б) $\int\limits_{-\infty}^{\infty} \sqrt{|x|}exp(\frac{-(x+1)^2}{2}) dx$}
+\begin{equation*}
+    \int\limits_{-\infty}^{\infty} \sqrt{|x|}exp(\frac{-(x+1)^2}{2}) dx =  \sqrt{2\pi} \mathbf{E}(\sqrt{|x|}),\qquad X \sim N(1,-1) 
+\end{equation*}
+
+
+Листинг решения:
+\lstinputlisting[language=Octave, firstline=26]{../lab1/lab1_2.m}
+При $n=10^4$:
+\begin{gather*}
+T =  1.9600\\
+I =  2.5169\\
+dI =  0.019378\\
+ans =  0.019378\\
+interval =[ 2.4975 :  2.5362]
+\end{gather*}
+При $n=10^6$:
+\begin{gather*}
+T =  1.9600\\
+I =  2.5193\\
+dI =  0.0019467\\
+ans =  0.0019467\\
+interval = [ 2.5173 :  2.5212 ]
+\end{gather*}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{hist3}
+\end{figure}
+\end{document} 

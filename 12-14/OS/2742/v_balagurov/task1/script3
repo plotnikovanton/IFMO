@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ -d ccc ]
+then 
+echo "Каталог существует, копируем в него"
+else
+mkdir ccc
+fi
+for FILE in $(grep -l "" c*)
+do
+if [ -f $FILE ] 
+then
+cp $FILE ccc/$FILE.copy
+fi
+done
+
+

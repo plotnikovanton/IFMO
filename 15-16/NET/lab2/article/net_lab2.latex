@@ -1,0 +1,98 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[left=1cm,right=1cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+\usepackage{cmap}                   % поиск в PDF
+\usepackage[T2A]{fontenc}           % кодировка
+\usepackage[utf8]{inputenc}         % кодировка исходного текста
+\usepackage[english,russian]{babel} % локализация и переносы
+\usepackage{color}
+\usepackage{graphicx}
+
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
+
+\author{Абдрашитова Юлия, Плотников Антон, гр. А3401}
+\title{Лабораторная работа 2}
+\subtitle{Работа с адресами IP сетей}
+\date{\today}
+
+\begin{document} % Конец преамбулы, начало текста.
+
+\maketitle
+
+\pagebreak
+
+\begin{table}[]
+\centering
+\resizebox{\textwidth}{!}{\begin{tabular}{|l|c|cccc}
+\cline{1-2}
+Вариант               & 1               &                                      &                                      &                                      &                                    \\ \hline
+Сеть                  & 1               & \multicolumn{1}{c|}{2}               & \multicolumn{1}{c|}{3}               & \multicolumn{1}{c|}{4}               & \multicolumn{1}{c|}{5}             \\ \hline
+IP                    & 194.85.32.224   & \multicolumn{1}{c|}{194.85.32.224}   & \multicolumn{1}{c|}{194.85.32.128}   & \multicolumn{1}{c|}{194.85.32.192}   & \multicolumn{1}{c|}{194.85.32.0}   \\ \hline
+Маска                 & 255.255.255.224 & \multicolumn{1}{c|}{255.255.255.192} & \multicolumn{1}{c|}{255.255.255.128} & \multicolumn{1}{c|}{255.255.255.192} & \multicolumn{1}{c|}{255.255.128}   \\ \hline
+Кол-во адресов в сети & 30              & \multicolumn{1}{c|}{62}              & \multicolumn{1}{c|}{126}             & \multicolumn{1}{c|}{62}              & \multicolumn{1}{c|}{126}           \\ \hline
+Минимальный адрес     & 194.85.32.225   & \multicolumn{1}{c|}{194.85.32.193}   & \multicolumn{1}{c|}{194.85.32.129}   & \multicolumn{1}{c|}{194.85.32.193}   & \multicolumn{1}{c|}{194.85.32.1}   \\ \hline
+Максимальный адрес    & 194.85.32.254   & \multicolumn{1}{c|}{194.85.32.254}   & \multicolumn{1}{c|}{194.85.32.254}   & \multicolumn{1}{c|}{194.85.32.254}   & \multicolumn{1}{c|}{194.85.32.126} \\ \hline
+\end{tabular}}
+\end{table}
+
+
+
+
+\begin{table}[]
+\centering
+\resizebox{\textwidth}{!}{\begin{tabular}{|l|c|cccc}
+\cline{1-2}
+Вариант               & 2               &                                      &                                      &                                      &                                    \\ \hline
+Сеть                  & 1               & \multicolumn{1}{c|}{2}               & \multicolumn{1}{c|}{3}               & \multicolumn{1}{c|}{4}               & \multicolumn{1}{c|}{5}             \\ \hline
+IP                    & 10.12.12.128    & \multicolumn{1}{c|}{10.12.12.128}    & \multicolumn{1}{c|}{10.12.12.0}      & \multicolumn{1}{c|}{10.12.13.0}      & \multicolumn{1}{c|}{10.12.12.0}    \\ \hline
+Маска                 & 255.255.255.192 & \multicolumn{1}{c|}{255.255.255.128} & \multicolumn{1}{c|}{255.255.255.0}   & \multicolumn{1}{c|}{255.255.255.0}   & \multicolumn{1}{c|}{255.255.255.128}   \\ \hline
+Кол-во адресов в сети & 62              & \multicolumn{1}{c|}{126}             & \multicolumn{1}{c|}{254}             & \multicolumn{1}{c|}{254}             & \multicolumn{1}{c|}{126}           \\ \hline
+Минимальный адрес     & 10.12.12.129    & \multicolumn{1}{c|}{10.12.12.129}    & \multicolumn{1}{c|}{10.12.12.1}      & \multicolumn{1}{c|}{10.12.13.1}      & \multicolumn{1}{c|}{10.12.12.1}   \\ \hline
+Максимальный адрес    & 10.12.12.190    & \multicolumn{1}{c|}{10.12.12.254}    & \multicolumn{1}{c|}{10.12.12.254}    & \multicolumn{1}{c|}{10.12.12.254}    & \multicolumn{1}{c|}{10.12.12.126} \\ \hline
+\end{tabular}}
+\end{table}
+
+
+
+
+\begin{table}[]
+\centering
+\resizebox{\textwidth}{!}{\begin{tabular}{|l|c|cccc}
+\cline{1-2}
+Вариант               & 3               &                                       &                                       &                                      &                                    \\ \hline
+Сеть                  & 1               & \multicolumn{1}{c|}{2}                & \multicolumn{1}{c|}{3}                & \multicolumn{1}{c|}{4}               & \multicolumn{1}{c|}{5}             \\ \hline
+IP                    & 212.24.19.240   & \multicolumn{1}{c|}{212.24.19.224}    & \multicolumn{1}{c|}{212.24.19.192}    & \multicolumn{1}{c|}{212.24.19.192}   & \multicolumn{1}{c|}{212.24.19.208}    \\ \hline
+Маска                 & 255.255.255.240 & \multicolumn{1}{c|}{255.255.255.224}  & \multicolumn{1}{c|}{255.255.255.224}  & \multicolumn{1}{c|}{255.255.255.240} & \multicolumn{1}{c|}{255.255.255.240}   \\ \hline
+Кол-во адресов в сети & 14              & \multicolumn{1}{c|}{30}               & \multicolumn{1}{c|}{30}               & \multicolumn{1}{c|}{14}              & \multicolumn{1}{c|}{14}           \\ \hline
+Минимальный адрес     & 212.24.19.241   & \multicolumn{1}{c|}{212.24.19.225}    & \multicolumn{1}{c|}{212.24.19.193}    & \multicolumn{1}{c|}{212.24.19.193}   & \multicolumn{1}{c|}{212.24.19.209}   \\ \hline
+Максимальный адрес    & 212.24.19.254   & \multicolumn{1}{c|}{212.24.19.254}    & \multicolumn{1}{c|}{212.24.19.222}    & \multicolumn{1}{c|}{212.24.19.206}   & \multicolumn{1}{c|}{212.24.19.222} \\ \hline
+\end{tabular}}
+\end{table}
+
+
+
+
+
+\begin{table}[]
+\centering
+\resizebox{\textwidth}{!}{\begin{tabular}{|l|c|cccc}
+\cline{1-2}
+Вариант               & 4               &                                       &                                       &                                      &                                    \\ \hline
+Сеть                  & 1               & \multicolumn{1}{c|}{2}                & \multicolumn{1}{c|}{3}                & \multicolumn{1}{c|}{4}               & \multicolumn{1}{c|}{5}             \\ \hline
+IP                    & 126.13.120.96   & \multicolumn{1}{c|}{126.13.120.112}   & \multicolumn{1}{c|}{126.13.120.112}   & \multicolumn{1}{c|}{126.13.120.112}  & \multicolumn{1}{c|}{126.13.120.120}    \\ \hline
+Маска                 & 255.255.255.240 & \multicolumn{1}{c|}{255.255.255.112}  & \multicolumn{1}{c|}{255.255.255.224}  & \multicolumn{1}{c|}{255.255.255.252} & \multicolumn{1}{c|}{255.255.255.252}   \\ \hline
+Кол-во адресов в сети & 14              & \multicolumn{1}{c|}{14}               & \multicolumn{1}{c|}{6}                & \multicolumn{1}{c|}{2}               & \multicolumn{1}{c|}{2}           \\ \hline
+Минимальный адрес     & 126.13.120.97   & \multicolumn{1}{c|}{126.13.120.113}   & \multicolumn{1}{c|}{126.13.120.113}   & \multicolumn{1}{c|}{126.13.120.113}  & \multicolumn{1}{c|}{126.13.120.121}   \\ \hline
+Максимальный адрес    & 126.13.120.110  & \multicolumn{1}{c|}{126.13.120.126}   & \multicolumn{1}{c|}{126.13.120.114}   & \multicolumn{1}{c|}{126.13.120.114}  & \multicolumn{1}{c|}{126.13.120.122} \\ \hline
+\end{tabular}}
+\end{table}
+
+\end{document} % Конец текста.

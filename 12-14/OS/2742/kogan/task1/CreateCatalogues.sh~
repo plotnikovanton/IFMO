@@ -1,0 +1,14 @@
+#!/bin/bash
+
+for i in {1..33}
+do
+mkdir "a$i"
+
+for i in {1..33}
+do
+mkdir "b$i"
+
+for i in {1..33}
+do
+mkdir "c$i"
+done

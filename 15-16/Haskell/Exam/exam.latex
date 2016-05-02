@@ -1,0 +1,433 @@
+\documentclass[12pt]{extreport}
+\usepackage[left=2cm,right=2cm,top=0.5cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{diagbox}
+\usepackage[T1, T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{color}
+\lstset {numbers = left, numberstyle = \tiny,
+    emph = {abs, addpath, angle, ceil, clc, clear, conj, cos, diff,
+    end, else, elseif, erfc, error, exp, fclose, fft, fftshift,
+    fopen, flipdim, fliplr, floor, for, fprintf, function, hold,
+    if, ifft, imag, interp1, length, linspace, log10, log2, max,
+    mean, min, num2str, ones, pause, plot, pi, prod, pwelch, rand,
+    randn, real, rem, reshape, roots, round, save, sin, size, sqrt,
+    sum, tic, toc, unwrap, var, while, zeros},
+    emphstyle = \bfseries,
+    morecomment = [l] [\itshape] {\%},
+    morecomment = [l] [\slshape] {disp},
+    }
+\lstset{language=Haskell}
+
+\newtheorem*{theorem}{Теорема}
+
+\begin{document}
+\chapter*{Понятие о функциональном стиле программирования. Отличительныe особенности этого стиля.}
+
+\chapter*{Язык Haskell: типы, функции и задание определяющих уравнений для функций. Образцы и сопоставление с ними.}
+
+\chapter*{Рекурсия и накапливающие параметры. Эффективность рекурсивных функций. Концевая рекурсия. Примеры.}
+
+\chapter*{Язык Haskell: списки и операции над ними. Способы задания списков.}
+
+\chapter*{Задание синонимов для типов данных. Определение новых типов данных, конструкторы. Параметризация типов данных.}
+
+\chapter*{Сложные типы данных. Определение деревьев и функций их обработки. Сортировка с помощью двоичного дерева.}
+
+\chapter*{Функции высших порядков. Отображение (map) и свертка (foldr) списков. Определение функций с помощью лямбда-выражений в Haskell.}
+
+\chapter*{Свертка деревьев. Примеры программирования с помощью свертки сложных структур данных - деревьев и списков.}
+
+\chapter*{Частичное применение функций. Карринг и сечение. Каррирование и декаррирование функций.}
+
+\chapter*{Функциональное представление конечных и бесконечных множеств. Фильтрация списков.}
+
+\chapter*{Понятие об энергичном и ленивом вычислениях. Конъюнкция и дизъюнкция "по МакКарти". "Бесконечные" структуры данных.}
+
+\chapter*{Встроенные в язык операции над бесконечными списками. Программа вычисления списка простых чисел способом "решета Эратосфена".}
+
+\chapter*{Определение классов и их реализации. Расширение классов. Стандартные классы Eq, Ord, Show, Functor.}
+
+\chapter*{Моноиды (Monoid) и сворачиваемые структуры данных (Foldable).}
+Моноид -- это такой тип, для которого создано провило для комбинирования двух элементов этого типа для получения нового элемента этого же типа.
+
+\begin{lstlisting}
+class Monoid m where
+    mappend :: m -> m -> m
+    mempty :: m
+\end{lstlisting}
+
+Тут mappend правило комбинирования, а mempty нейтральный элемент, т.е
+
+\begin{lstlisting}
+a `mappend` mempty = a
+mempty `mappend` a = a
+\end{lstlisting}
+
+Для списков, например, будет
+
+\begin{lstlisting}
+instance Monoid [a] where
+    mappend = (++)
+    mempty = []
+\end{lstlisting}
+
+Следует отметить, что комбинироватие ассоциативно
+
+Foldable нужен для представления сворачиваемых структур.
+Минимально нужно переопределить foldr или foldMap.
+Функция foldMap применяет соответствующую функцию к каждому элементу структуры
+и собирает результаты.
+
+\begin{lstlisting}
+foldMap :: Monoid m => (a -> m) -> t a -> m
+foldr :: (a -> b -> b) -> b -> t a -> b
+\end{lstlisting}
+
+Пример из которого все понятно
+
+\begin{lstlisting}
+data Tree a = Empty | Leaf a | Node (Tree a) a (Tree a)
+
+instance Foldable Tree where
+   foldMap f Empty = mempty
+   foldMap f (Leaf x) = f x
+   foldMap f (Node l k r) = foldMap f l
+                           `mappend` f k `mappend` foldMap f r
+
+instance Foldable Tree where
+   foldr f z Empty = z
+   foldr f z (Leaf x) = f x z
+   foldr f z (Node l k r) = foldr f (f k (foldr f z r)) l
+\end{lstlisting}
+
+
+\chapter*{Монады (класс Monad) и простейший ввод/вывод.}
+Монада это такой вот класс
+
+\begin{lstlisting}
+class Monad m where
+  (>>=)  :: m a -> (a -> m b) -> m b
+  (>>)   :: m a -> m b -> m b
+  return :: a -> m a
+  fail   :: String -> m a
+\end{lstlisting}
+
+Минимально можно определить ($>>=$) «bind» и return
+
+$>>$ -- для представления "цепочки" команд
+$>>=$ -- что-то типа конвеера
+
+Демонстрация мондаы IO (ввод вывод) и do-нотации
+
+\begin{lstlisting}
+main :: IO ()
+main = do
+  putStrLn "What's your name?"
+  name <- getLine
+  putStrLn $ "Hello, " ++ name ++ "!"
+\end{lstlisting}
+эквивалентно
+\begin{lstlisting}
+main :: IO ()
+main =
+  putStrLn "What's your name?" >>
+  getLine >>=
+  \name -> putStrLn $ "Hello, " ++ name ++ "!"
+\end{lstlisting}
+
+\chapter*{Лямбда-исчисление: базовые понятия и правила редукций. Нормальная форма и ее единственность.}
+Есть переменные, константы, функции, абстракции
+
+Замкнутое выражений -- выражение, не содержащее свободных переменных
+
+$\delta$ - редукция -- вычисление функции от аргументов ($+\  3\  5 \rightarrow 8$)
+
+$\beta$ - редукция -- подстановка выражения вместо какой-то связанной переменной
+($ (\lambda x.+\ 40\ x)\ 2 \rightarrow +\ 40\ 2 $)
+
+$\alpha$ - пробразование -- переименование переменной по которой есть абстракция,
+обычно речь идет о $\alpha$-эквивалентости ($ \lambda x.((\lambda y.\lambda x+\ x\ y)\ x \rightarrow \lambda z.((\lambda y.\lambda x+\ x\ y)\ z $)
+
+$\eta$ - преобразование -- убираем абстракции от функции ($\lambda x.E\ x \rightarrow E$)
+
+Нормальная форма -- лямбда-выражение, к которому не приминима $\beta$ и $\delta$ редукции
+
+\begin{theorem}[Черца-Россела]
+Если для некоторых лямбда-термов $K$, $L$, $M$ выполняются отношения редукции
+$K \rightarrow L$ и $K \rightarrow M$, то существует такой терм $N$, что $L \rightarrow N$ и $M \rightarrow N$.
+\end{theorem}
+
+По следствию из теоремы Черча-Россела - нормальная форма единственна
+
+\chapter*{Различные порядки редукций в лямбда-исчислении. Проблема конфликта имен переменных. Слабая заголовочная нормальная форма.}
+
+Редекс - выражение к которому приминима одна из редукций
+
+Аппликативный порядок редукций - редуцируется самый левый из самых внутренних редексов
+\begin{itemize}
+    \item Не приводит к копированию одних и тех же выражений, если они не находятся в
+нормальной форме.
+    \item Выполняет редукцию даже тех выражений, которые в дальнейшем могут быть отброшены.
+    \item Может не приводить к нормальной форме, даже если она существует.
+\end{itemize}
+
+Нормальный порядок редукций - редуцируется самый левый из самых внешних редексов
+\begin{itemize}
+    \item Одни и те же выражения аргументов могут
+многократно копироваться при подстановке в
+тело лямбда-выражения.
+    \item Никогда не редуцирует выражение, если это
+может оказаться впоследствии ненужным.
+    \item Всегда приводит выражение к нормальной
+форме, если только она вообще существует.
+\end{itemize}
+
+Покажу проблему конфликта имен переменных на примере
+$$
+\lambda x.((\lambda y\ x.+\ x\ y)\  x) \rightarrow \lambda x.(\lambda x.+\ x\ x)
+$$
+Чтобы избежать проблемы нужно сделать $\alpha$-преобразование
+$$
+\lambda x.((\lambda y\ x.+\ x\ y)\  x) \rightarrow \lambda z.((\lambda y\ x.+\ x\ y)\  z) \rightarrow \lambda z.(\lambda x.+\ x\ z)
+$$
+
+\subsection*{Слабая заголовочная нормальная форма (СЗНФ)\\ aka Weak Head Normal Form (WHNF)}
+Замкнутое выражение (без свободных переменных) находится в WHNF елсли это:
+\begin{itemize}
+    \item Константа
+    \item Абстракция ($\lambda x.E$)
+    \item Частичное приминение функции ($+\ 42$)
+\end{itemize}
+
+Следует отметить что большинство функциональных яп остановливает редукцию именно на WHNF
+
+\chapter*{Прямая и косвенная рекурсия в лямбда-исчислении. Комбинатор неподвижной точки. Y-комбинатор Карри.}
+Рассмотрим на примере факториала
+
+$$f(n) = 1, if n = 0; else n \cdot f(n-1)$$
+$$ fac := \lambda n.(if\  (=\  n \  0)\  1\  (* \  n \  (fac\  (- \  n \  1)))) $$
+$$ FB := \lambda f \  n.(if\  (=\  n \  0)\  1\  (* \  n \  (f\  (- \  n \  1)))) $$
+
+В частном случае все хорошо, но хотелось бы найти решение в общем.
+Нас интересует такой $fac$, что $fac = FB\  fac$. Нужно найти такую $Y$, что
+$fac = Y\  FB$. Более формально $Y\  F=F\ (Y\  F)$. Это ничто иное как неподвижная точка.
+Соответсвенно $Y$ называтеся комбинатором неподвижной точки.
+
+Такая функция есть это $Y$ - комбинатор он же комбинатор Карри: $Y = \lambda g.(\lambda x. g (x\  x)) \  (\lambda x.g (x\  x))$
+
+Таким образом наш факториал можно вычислить как
+$$\lambda g.(\lambda x.g (x\  x)) \  (\lambda x.g (x\  x)) \  \  \lambda f \  n.(if\  (=\  n \  0)\  1\  (* \  n \  (f\  (- \  n \  1))))$$
+
+
+\chapter*{Представление констант и основных функций в чистом лямбда-исчислении: логические функции и значения, списки.}
+\subsection*{Логичиские функции}
+Константы Черча. Все красиво и тривиально.
+
+\begin{itemize}
+\item $TRUE \equiv \lambda x\ y . x$
+\item $FALSE \equiv \lambda x\ y . y$
+\item $IF \equiv \lambda p\ x\ y. p\ x\ y$
+\item $AND \equiv \lambda p\ q. p\ q\ FALSE$
+\item $OR \equiv \lambda p\ q. p\ TRUE\ q$
+\item $NOT \equiv \lambda p\ . FALSE\ TRUE$
+\end{itemize}
+
+\subsection*{Списки}
+
+\begin{itemize}
+\item $CONS \equiv \lambda x\ y\ s . s\ x\ y$ -- конструирование
+\item $CAR \equiv \lambda t. t\ TRUE$ -- head
+\item $CDR \equiv \lambda t. t\ FALSE$
+\item $NIL \equiv \lambda x.TRUE$ -- пустой список
+\item $NUNLL \equiv \lambda t.t\ (\lambda x\ y.FALSE)$
+\end{itemize}
+
+Посмотрим как это работает на примере:
+
+$$CAR\ (CONS\ A\ B) \rightarrow CAR (\lambda s. s\ A\ B) \rightarrow
+(\lambda s. s A B)\ TRUE \rightarrow TRUE\ A\ B \rightarrow A$$
+
+\chapter*{Чистое лямбда-исчисление: способы представления арифметических значений и функций.}
+\subsection*{Целые числа}
+Вот все эти чиселки на самом деле правильно обзывать "нумералами Черча"
+
+\begin{itemize}
+\item $0 \equiv \lambda f. \lambda x . x$
+\item $1 \equiv \lambda f. \lambda x . f\ x$
+\item $2 \equiv \lambda f. \lambda x . f\ (f\ x)$
+\end{itemize}
+и так далее
+
+Хотим уметь получать следующий и предидущий нумерал:
+
+\begin{itemize}
+    \item $SUCC \equiv \lambda n\ f\ x . f\ (n\ f\ x)$
+    \item $PRED \equiv \lambda n\ f\ x . n\ (\lambda g\ h.h\ (g\ f))\ (\lambda u.x)\ (\lambda u.u)$
+\end{itemize}
+
+Арифметика
+
+\begin{itemize}
+    \item $PLUS \equiv \lambda m\ n. m\ SUCC\ n$
+    \item $MULT \equiv \lambda m\ n. m\ (PLUS\ n) 0$
+    \item $EQ0 \equiv \lambda n. n\ (\lambda x. FALSE)\ TRUE$
+\end{itemize}
+
+\chapter*{Интерпретаторы и компиляторы. Перевод конструкций языков функционального программирования в расширенное лямбда-исчисление.}
+\subsection*{Схема интерпретатора}
+На вход интерпретатору подается фунция и аргументы результатом работы является
+результат применения функции к аргументам
+
+\subsection*{Схема компилятора}
+На вход подается функция в результатом работы компилятора является эквивалентная программа,
+т.е. для получения результата необходима интерпретация аппаратным или программным
+интерпретатором
+
+\subsection*{Введем расширенное лямбда исчисление.}
+
+В нем будут:
+
+\begin{itemize}
+    \item константы - целые числа, булевы значения
+    \item примитивные функции (IF TUPLE-n INDEX)
+    \item лямбда-выражения
+    \item применение функций или лямбда выражений к аргументам
+    \item блоки let для связи переменных
+    \item рекурсивные блоки
+\end{itemize}
+
+\subsection*{Перевод из Haskell}
+\begin{itemize}
+    \item Константа: $c \rightarrow c$
+    \item Переменная: $x \rightarrow x$
+    \item Примитивная функция: $f \rightarrow f$
+    \item Лябда-выражение: $\backslash x->e \rightarrow \lambda x.E$
+    \item Приминение функции: $e1\ e2 \rightarrow e1\ e2;\ a + b \rightarrow +\ a\ b$
+    \item Кортежи: $(e1, e2, e3) \rightarrow TUPLE-3\ e1\ e2\ e3$
+    \item Конструкторы $m$ аргументов переводятся в $TUPLE-n$ ($n = m+1$), где на
+    первом месте идет номер конструктора в типе $[3] \rightarrow TUPLE-3\ 1\ 3\ (TUPLE-1\ 0)$
+    \item серия определений или одиночное определение транслируется в $letrec$ и $rec$ соответственно
+    \item сопоставление преобразуется сначала в лямбду, а затем в рекурсивный блок
+\end{itemize}
+
+\chapter*{Представление программ расширенного лямбда-исчисления в виде объектов языка Haskell. Схема интерпретации в Eval / Apply интерпретаторе.}
+\subsection*{Представление на Haskell}
+\begin{lstlisting}
+data Expr = Integral Integer | Logical Bool | Function String
+          | Variable String | Lambda String Expr
+          | Application Expr Expr | Let String Expr Expr
+          | Letrec [(String, Expr)] Expr
+\end{lstlisting}
+
+\subsection*{Схема интерпретации Eval / Apply}
+Введем понятие контекста -- список в котором идентификаторы переменных связаны со
+своими значениями - выражениями в СЗНФ. Сразу же введем тип данных для него
+
+\begin{lstlisting}
+type Context = [(String, Expr)]
+\end{lstlisting}
+
+Eval/apply интерпретатор содержит две основные функции:
+\begin{itemize}
+    \item eval -- вычисляет значение выражения в заданном контексте переменных
+    \item apply -- вычисляет результат применения некоторой функции к заданному
+        значению аргумента
+\end{itemize}
+
+Сама интерпретация - это вызов функции eval но пустом контексте
+
+\begin{lstlisting}
+eval  :: Context -> Expr -> Expr
+apply :: Expr -> Expr -> Expr
+\end{lstlisting}
+
+\chapter*{Реализация Eval / Apply интерпретатора программ. Вопрос об энергичной и ленивой схемах интерпретации.}
+Введем замыкания и сечения.
+
+Замыкание - для лямбда выражений нужно чтобы в себе они хранили контекст глобальных
+переменных, поэтому введем дополнительный конструктор в $Expr$ он будет служить
+СЗНФ для лямбда выражений $Clousure\ String\ Expr\ Context$
+
+Сечение - для сечений будем запоминать количество
+аргументов которые необходимо еще вычислить, поэтому
+введем конструктор $Oper\ Int\ String\ [Expr]$
+
+\begin{lstlisting}
+eval e@(Constant c) _        = e
+eval (Function f) _          = Oper f (arity f) []
+eval (Variable x) ctx        = assoc x ctx
+eval (Cond b e1 e2) ctx      = eval (if (Constant 0) == (eval b ctx) then e2 else e1) ctx
+eval (Application e1 e2) ctx = (apply $! (eval e1 ctx)) $! (eval e2 ctx)
+eval (Lambda x body) ctx     = Closure x body ctx
+eval (Let x e1 e2) ctx       = eval e2 ((x, (eval e1 ctx)):ctx)
+eval (Letrec x e1 e2) ctx    = eval e2 newctx
+          where newctx = (x, (eval e1 newctx)) : ctx
+eval e@(Closure _ _ _) _     = e
+eval e@(Oper _ _ _) _        = e
+
+apply (Oper f n args) arg | n == 1     = primApp f newargs
+                          | otherwise  = Oper f (n-1) newargs
+          where newargs = args ++ [arg]
+apply (Closure x body ctx) arg         = eval body ((x, arg):ctx)
+
+arity "+" = 2
+arity "-" = 2
+arity "*" = 2
+
+primApp "+" [(Constant a), (Constant b)] = Constant (a + b)
+primApp "-" [(Constant a), (Constant b)] = Constant (a - b)
+primApp "*" [(Constant a), (Constant b)] = Constant (a * b)
+\end{lstlisting}
+
+В энергичных языках вычисление аргумента произойдет до вызова apply
+\begin{lstlisting}
+eval ctx (Apply f a)  =  apply (eval ctx f) (eval ctx a)
+\end{lstlisting}
+но задерживается при ленивой.
+
+Если инструментальный язык энергичный, то проблемами будут If и рекурсивные блоки.
+
+Зацикленный контекст вообые невозможно реализовать.
+
+\chapter*{Архитектура и представление SECD-машины. Интерпретация работы энергичной SECD-машины.}
+Структура:
+\begin{itemize}
+\item S - Stack -- содержит промежуточные результаты вычислений в СЗНФ
+\item E - Environment -- содержит контекст вычислений
+\item C - Control -- содержит последовательность команд
+\item D - Dump -- содержит состояния машины
+\end{itemize}
+
+\begin{lstlisting}
+type Stack = [WHNF]
+     Environment = Context
+     Control = [Command]
+     Dump = [(Stack, Environment, Control)]
+     SECD = (Stack, Environment, Control, Dump)
+
+data Command =
+        Integral Integer | Logical Bool | Function String |
+        Variable String  |
+        Lambda   String Command  |
+        Application Command Command |
+        If Command Command Command |
+        Let [(String, Command)] Command |
+        Letrec [(String, Command)] Command |
+
+data WHNF =
+        Numeric Integer | Boolean Bool |
+        Closure String Command Context |
+        Oper Int String [WHNF]
+\end{lstlisting}
+\chapter*{Ленивая SECD-машина. Представление и обработка задержанных вычислений.}
+
+\chapter*{Функциональные эквиваленты императивных программ: представление императивной программы в виде функции состояния.}
+
+\chapter*{Представление выражений в виде графов. Редукция графов. Решение проблемы разделения переменных. Фиктивные ссылочные узлы.}
+
+\end{document}

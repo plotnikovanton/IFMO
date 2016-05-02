@@ -1,0 +1,243 @@
+\documentclass[a4paper,12pt]{article}
+
+
+\usepackage[a4paper, total={7in, 9in}]{geometry}
+
+\usepackage{cmap}                   % поиск в PDF
+\usepackage[T2A]{fontenc}           % кодировка
+\usepackage[utf8]{inputenc}         % кодировка исходного текста
+\usepackage[english,russian]{babel} % локализация и переносы
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{fontawesome}
+\usepackage{ textcomp }
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{multirow}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  otherkeywords={*,...},           % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\newtheorem*{task}{Условие}
+\theoremstyle{definition}
+\newtheorem*{solve}{Обоснование решения}
+
+\graphicspath{{./img/}}
+
+\renewcommand{\figurename}{Скриншот}
+
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
+
+\author{Абдрашитова Юлия, Плотников Антон, Войтович Сергей гр. А3401}
+\title{Лабораторная работа 5}
+\subtitle{Проектирование локальной сети в среде моделирования}
+\date{\today}
+
+\begin{document} % Конец преамбулы, начало текста.
+
+\maketitle
+
+\pagebreak
+
+
+\includegraphics[width=\linewidth]{network-visualisation.png}
+
+\section*{Описание и настройка сети}
+
+В каждом офисе стоит по коммутатору.
+
+В 1м офисе использутется коммутатор из
+серверной, в которой в свою очередь стоят 3 хоста со статическими адресами, на
+одном из которых запущен DHCP сервер.
+
+Во 2м офисе все машины так же подключены к коммутатору, который соединен с
+коммутатором центрального офиса кросоверным кабелем, см. листинг \ref{lst:trunk}.
+
+\begin{lstlisting}[label=lst:trunk,caption=Trunk port configuration]
+en
+configure t
+int GigabitEthernet0/2
+switchport mode trunk
+switchport trunk allow vlan 3
+exit
+end
+\end{lstlisting}
+
+Сеть разделена на 2 VLAN, в первой виртуальной сети:
+\begin{itemize}
+    \item Все машины центрального офиса
+    \item Сервер DHCP
+    \item Сервер HTTP
+    \item Беспроводная точка доступа
+\end{itemize}
+во второй:
+\begin{itemize}
+    \item Все машины дополнительного офиса
+    \item Сервер DHCP
+    \item Сервер FTP
+\end{itemize}
+
+Настройки коммутаторов для первой и второй сети см. в листингах
+\ref{lst:vlana} и \ref{lst:vlanc} соответстенно.
+
+\begin{lstlisting}[label=lst:vlana,breaklines=true,caption=VLAN Commutator A configuration]
+en
+configure t
+
+vlan 2
+name OFFICE_A
+exit
+
+int range fa0/1-9
+switchport mode access
+switchport access vlan 2
+exit
+
+int range fa0/12-13
+switchport mode access
+switchport access vlan 2
+exit
+
+int fa0/23
+switchport mode access
+switchport access vlan2
+exit
+
+int vlan 2
+ip address 192.168.2.1 255.255.255.0
+ip helper-dhcp 192.168.2.2
+exit
+
+
+vlan 3
+name OFFICE_C
+exit
+
+int vlan 3
+ip address 192.168.2.1 255.255.255.0
+ip helper-dhcp 192.168.3.2
+exit
+
+int fa0/24
+switchport mode access
+switchport access vlan 3
+exit
+
+int fa0/10
+switchport mode access
+switchport access vlan 3
+exit
+
+end
+wr mem
+\end{lstlisting}
+
+
+\begin{lstlisting}[label=lst:vlanc,breaklines=true,caption=VLAN Commutator C configuration]
+en
+configure t
+
+vlan 3
+name OFFICE_C
+exit
+
+int vlan 3
+ip address 192.168.2.1 255.255.255.0
+ip helper-dhcp 192.168.3.2
+exit
+
+int range fa0/1-5
+switchport mode access
+switchport access vlan 3
+exit
+
+end
+wr mem
+\end{lstlisting}
+
+\section*{Спецификация сети}
+
+\begin{table}[h]
+    \centering
+    \caption{Принадлежность портов к виртуальным сетям}
+    \begin{tabular}{l|l|l}
+                              & \textbf{vlan 2} & \textbf{vlan 3} \\ \hline
+        \textbf{Коммутатор A} & 1-9, 12, 13, 23 & 11, 24          \\ \hline
+        \textbf{Киммутатор B} &                 & 1-5
+    \end{tabular}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\caption{Назначение портов коммутаторов}
+\begin{tabular}{l|ll}
+                                       & \multicolumn{1}{l|}{\textbf{Порт}} & \textbf{Назначение}                   \\ \hline
+\multirow{7}{*}{\textbf{Коммутатор A}} & \multicolumn{1}{l|}{fa0/1-8}       & Рабочие станции центрального офиса    \\
+                                       & \multicolumn{1}{l|}{fa0/9}         & Принтер в центральном офисе           \\
+                                       & \multicolumn{1}{l|}{fa0/11}        & FTP сервер                            \\
+                                       & \multicolumn{1}{l|}{fa0/12}        & HTTP сервер                           \\
+                                       & \multicolumn{1}{l|}{fa0/13}        & WiFi точка доступа                    \\
+                                       & \multicolumn{1}{l|}{fa0/23,24}     & DHCP сервер                           \\
+                                       & \multicolumn{1}{l|}{gig0/2}        & Коммутатор B                          \\ \hline
+\multirow{3}{*}{\textbf{Коммутатор B}} & \multicolumn{1}{l|}{fa0/1-4}       & Рабочие станции дополнительного офиса \\
+                                       & \multicolumn{1}{l|}{fa0/5}         & Принтер в дополнительном офисе        \\
+                                       & gig0/2                             & Коммутатор A
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\centering
+\caption{Таблица IP адресов}
+\label{my-label}
+\begin{tabular}{l|l}
+\textbf{Адрес} & \textbf{Назначение}          \\ \hline
+192.168.2.1    & vlan 2                       \\
+192.168.3.1    & vlan3                        \\
+192.168.3.100  & FTP сервер                   \\
+192.168.3.2    & \multirow{2}{*}{DHCP сервер} \\
+192.168.2.2    &                              \\
+192.168.2.100  & HTTP сервер
+\end{tabular}
+\end{table}
+
+
+\end{document} % Конец текста.

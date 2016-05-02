@@ -1,0 +1,17 @@
+#!/bin/bash
+if [ -d bbb ] 
+then 
+echo "Каталог уже существует, перемещаем в него"
+else 
+mkdir bbb 
+fi
+for FILE in $(grep -l "" b*)
+do
+if [ -f $FILE ] 
+then 
+mv $FILE bbb 
+fi
+
+done
+
+

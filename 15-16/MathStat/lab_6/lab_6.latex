@@ -1,0 +1,106 @@
+\documentclass[paper=a4, fontsize=11pt]{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amsthm}
+
+
+\usepackage{fancyhdr}
+\fancyhead{}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\setlength\parindent{0pt}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+\title{
+\normalfont \normalsize
+%\textsc{university, school or department name} \\ [25pt]
+%\horrule{0.5pt} \\[0.4cm]
+\huge Лабораторная работа \#6  \\ 
+\horrule{2pt} \\[0.5cm]
+}
+
+\author{Плотников Антон}
+
+\date{\normalsize\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Построить оцeнки максимального правдоподобия неизвестных параметров}
+\subsection{Распределение Пуассона. Параметр $\lambda$}
+
+\begin{gather*}
+    P(\zeta = m) = \frac{\lambda^m}{m!}e^{-\lambda}
+    \\
+    L(X, \lambda) = \prod_{i = 1}^{n}\frac{\lambda X^i}{X_i !}e^{-\lambda} = 
+    \frac{\lambda^{\sum X_i} }{\prod X_i !} e^{-\lambda n} =
+    \frac{\lambda^{n}\overline{X}}{\prod X_i ! }e^{-n\lambda}
+    \\
+    l(X,\lambda)=\ln L = \ln \left(\frac{\lambda^{n\overline{X}}}{\prod X_i!}\right)
+    = n\overline{X} \ln \lambda - \ln \prod X_i! - n\lambda
+    \\
+    \frac{\partial l}{\partial \lambda} = \frac{n \overline{X}}{\lambda} - n
+    \\
+    \frac{\partial l}{\partial \lambda} = 0 \Rightarrow
+    \frac{n\bar{X}}{\lambda} = n \Rightarrow  \lambda = \overline{X}
+    \\
+    \frac{\partial^2 l}{\partial \lambda^2} = -\frac{n \bar{X}}{\lambda^2} < 0
+    \Rightarrow maX \Rightarrow \lambda = \bar{X}  - MLE
+\end{gather*}
+
+\subsection{Неизвестная дисперсия $d = \sigma$ при известном среднем $a = 0$
+нормального распределения $N_{O,\sigma^2} = N_{0,d^2}$}
+
+\begin{gather*}
+    L(X, d) = \prod_{i = 1}^{n}\frac{1}{\sqrt{2\pi d}}\exp{-\frac{X_i^2}{2d}}
+    = \frac{1}{(2\pi d)^{n/2}}\exp{\frac{-\sum_{i =1}^{n} X_i^2}{2d}}
+    \\
+    l(X,d) = -\ln 2\pi^{n} - \frac{n}{2}\ln d -\frac{\sum_{i =
+    1}{n}X_i^2}{2d}
+    \\
+    \frac{\partial l}{d} = -\frac{n}{2d} + \frac{\sum_{i
+    =1}^{n}}X_i^2{2d^2}
+    \\
+    \frac{\partial l}{d} = 0 \Rightarrow \frac{\sum_{i =1}^{n}X_i^2}{2d^2} =
+    \frac{n}{2d} \Rightarrow d = \frac{1}{n}\sum_{i = 1}^{n}X_i^2
+\end{gather*}
+
+\subsection{$P(\zeta = A) = P$ - Бернулли}
+
+\begin{gather*}
+    L(X, P) = \prod_{k = 1}^{n}p^{X_k}(1 - P)^{1 -X_k}
+    \\
+    l = \ln L = \sum_{k = 1}^{n}(X_k \ln{P} + (1 - X_k)\ln{1 - P})
+    \\
+    \frac{\partial l}{\partial p} = \sum_{k = 1}^{n}(\frac{X_k}{P} - \frac{1
+- X_k}{1 - P}) = \frac{1}{P}\sum_{k = 1}^{n}X_k - \frac{n}{1 - P} + \frac{1}{1
+- P}\sum_{k = 1}^{n}X_k = \frac{1}{P(1 - P)}(\sum_{k = 1}^{n}X_k - nP)
+    \\
+\frac{\partial l}{\partial  P} = 0 \Rightarrow \sum_{k =1}^{n}X_k = nP
+\Rightarrow P = \frac{\sum_{k =1 }^{n}X_k}{n} = \overline{X}
+\end{gather*}
+
+\section{Те же оценки методом моментов}
+\begin{itemize}
+    \item  $E_{\lambda}X_1 = \lambda$  $\Rightarrow$ $\hat{\lambda} = \overline{X}$
+    \item  $E_d X_1^2 = \sigma^2 (2 - 1)!! = \sigma^2$  $\Rightarrow$ $\hat{d}
+        = \overline{X}^2 = \frac{1}{n}\sum_{i = 1}^{n} X_i^2$
+    \item  $E_p I(X_1 = A) = p \Rightarrow  \hat{p} = \overline{I(X_1 = A)} =
+        \frac{1}{n}\sum_{i = 1}^{n}I(X_i = A) = \overline{X}$
+\end{itemize}
+
+\section{Найти информацию фишера}
+$I(\theta) = E_{\theta}((l'_{\theta}(\theta, X))^2)$
+
+
+
+\end{document}
+

@@ -1,0 +1,126 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{cmap}                   % поиск в PDF
+\usepackage[T2A]{fontenc}           % кодировка
+\usepackage[utf8]{inputenc}         % кодировка исходного текста
+\usepackage[english,russian]{babel} % локализация и переносы
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+
+\graphicspath{{./img/}}
+
+\renewcommand{\figurename}{Скриншот}
+
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
+
+\author{Абдрашитова Юлия, Плотников Антон, гр. А3401}
+\title{Лабораторная работа 3}
+\subtitle{Мониторинг сетевого трафика}
+\date{\today}
+
+\begin{document} % Конец преамбулы, начало текста.
+
+\maketitle
+
+\pagebreak
+
+\section{Wireshark}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{limits.png}
+    \caption{Усливия остановки захвата}
+    \label{limits}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{most_ip.png}
+    \caption{Самый активный узел}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{no_broadcast.png}
+    \caption{Отсутствие бродкастов}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{tcp.png}
+    \caption{Самый активный TCP-порт хоста}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{tcp-udp.png}
+    \caption{График интенсивности TCP/UDP}
+\end{figure}
+
+\subsection{Фильтры}
+
+
+\begin{enumerate}[label=\alph*.]
+    \item http || ftp
+    \item ip.src==192.168.1.16 \&\& eth
+    \item eth.addr==ff:ff:ff:ff:ff:ff || ip.addr==255.255.255.255
+        || ip.addr==192.168.1.255 || tr.addr == ff:ff:ff:ff:ff:ff
+    \item eth \&\& (ip || ipv6 || icmp || icmpv6 || igmp)
+\end{enumerate}
+
+\subsection{Типы кадров Ethernet}
+
+\subsubsection{Кадр 802.3/LLC}
+
+Заголовок кадра является результатом объединения заголовков кадров уровня LLC и MAC (стандарты 802.2 и 802.3 соответственно).
+
+\subsubsection{Кадр Raw802.3}
+
+Кадр уровня MAC без вложенного заголовка LLC.
+
+
+\subsubsection{Кадр EthernetDIX(Ethernet II)}
+
+Кадр практически совпадает с Raw 802.3,за исключением того, что вместо поля L используется также двухбайтовое поле Т (Type),предназначенное для тех же целей, что и SAP кадра уровня LLC-указания типа вышележащего протокола.
+
+\subsubsection{Кадр Ethernet SNAP}
+
+Кадр Ethernet SNAP представляет собой расширение кадра 802.3/LLC за счет введения дополнительного заголовка SNAP из двух полей: OUI и Type. Type полностью повторяет аналогичное поле кадра Ethernet DIX, а OUI определяет организацию, контролирующую коды протоколов в поле Type.
+
+\subsection{Какой тип кадров Ethernet используется в анализируемой сети? Почему
+именно он?}
+
+Ethernet II, т.к. в нем есть поле для указания типа протокола верхнего уровня.
+
+\section{Вопросы}
+
+\subsection{На какие адреса сетевого уровня осуществляются широковещательные рассылки?}
+
+К адресу сети побитово прибавляется инверсия маски подсети.
+
+\subsection{На какой канальный адрес осуществляются широковещательные рассылки?
+}
+
+ff:ff:ff:ff:ff:ff
+
+\subsection{Как с помощью утилиты arp просмотреть arp-кэш и как его очистить. В каких случаях может понадобиться последняя операция?}
+
+arp -a
+
+arp -d -a
+
+Как правило, добавление новых записей в таблицу и удаление старых по истечению срока их действия происходит автоматически, но иногда поврежденная или некорректная запись ARP может нарушать нормальное взаимодействие с локальной сетью.
+
+\subsection{Какой из двух протоколов telnet или ssh является более защищенным? Почему?}
+
+SSH, т.к. он шифрует весь трафик.
+
+\end{document} % Конец текста.

@@ -1,0 +1,38 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+Brothers	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Brothers ($/;"	t	language:SQL
+Brothers.brother_id	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  user_id INT NOT NULL,$/;"	F	language:SQL
+Brothers.user_id	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Brothers ($/;"	F	language:SQL
+Comments	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Comments ($/;"	t	language:SQL
+Comments.comment_id	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Comments ($/;"	F	language:SQL
+Comments.likes	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  comment_id SERIAL,$/;"	F	language:SQL
+Comments.receiver	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  sender     INT       NOT NULL,$/;"	F	language:SQL
+Comments.sender	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  text       VARCHAR   NOT NULL,$/;"	F	language:SQL
+Comments.text	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  likes      INT DEFAULT 0,$/;"	F	language:SQL
+Comments.time	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  receiver   INT       NOT NULL,$/;"	F	language:SQL
+Groups	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Groups ($/;"	t	language:SQL
+Groups.group_id	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Groups ($/;"	F	language:SQL
+Groups.owner	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  group_id INT NOT NULL,$/;"	F	language:SQL
+Message	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Message ($/;"	t	language:SQL
+Message.message_id	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Message ($/;"	F	language:SQL
+Message.receiver	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  sender     INT       NOT NULL,$/;"	F	language:SQL
+Message.sender	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  text       VARCHAR   NOT NULL,$/;"	F	language:SQL
+Message.text	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  message_id SERIAL,$/;"	F	language:SQL
+Message.time	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  receiver   INT       NOT NULL,$/;"	F	language:SQL
+Person	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Person ($/;"	t	language:SQL
+Person.birthday	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  name     VARCHAR(30)   NOT NULL,$/;"	F	language:SQL
+Person.father	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  mother   INT,$/;"	F	language:SQL
+Person.level	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  mail     VARCHAR(30)   NOT NULL,$/;"	F	language:SQL
+Person.mail	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  phone    INT           NOT NULL,$/;"	F	language:SQL
+Person.mother	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  level    INT DEFAULT 0 NOT NULL,$/;"	F	language:SQL
+Person.name	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  user_id  INT           NOT NULL,$/;"	F	language:SQL
+Person.partner	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  father   INT,$/;"	F	language:SQL
+Person.phone	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  birthday DATE          NOT NULL,$/;"	F	language:SQL
+Person.user_id	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Person ($/;"	F	language:SQL
+Posts	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Posts ($/;"	t	language:SQL
+Posts.likes	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  post_id SERIAL,$/;"	F	language:SQL
+Posts.post_id	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Posts ($/;"	F	language:SQL
+Posts.reciver	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  sender  INT     NOT NULL,$/;"	F	language:SQL
+Posts.sender	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  text    VARCHAR NOT NULL,$/;"	F	language:SQL
+Posts.text	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^  likes   INT DEFAULT 0,$/;"	F	language:SQL
+Users	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Users (-- Поскольку у группы и пользователя почти одинакове возможности$/;"	t	language:SQL
+Users.user_id	/home/anton/ITMO/15-16/DB/hw_2/homework2.sql	/^CREATE TABLE Users (-- Поскольку у группы и пользователя почти одинакове возможности$/;"	F	language:SQL

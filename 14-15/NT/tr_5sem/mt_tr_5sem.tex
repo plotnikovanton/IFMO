@@ -1,0 +1,246 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[left=1.5cm,right=1cm,top=1cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{amsmath}
+\usepackage{diagbox}
+\usepackage[T1, T2A]{fontenc}	
+\usepackage[utf8]{inputenc}	
+\usepackage[english, russian]{babel}
+\usepackage{amssymb}
+
+\author{Плотников Антон, г. 3743}
+\title{Типовой расчет по теории чисел.}
+\date{\today}
+
+\begin{document} % Конец преамбулы, начало текста.
+
+\maketitle
+
+\section*{Задача 1}
+\subsection*{A.}
+
+\begin{gather*}
+    5x \equiv 15 (mod\, 28) \\
+    x \equiv 3 (mod\, 28)
+\end{gather*}
+
+
+\subsection*{B.}
+
+\begin{gather*}
+    14x \equiv 41 (mod\, 198) \\
+    (14,221)=1 \\
+    \frac{221}{14}=15+\dfrac{1}{1+\dfrac{1}{3+\dfrac{1}{1+\dfrac{1}{2}}}}\\
+    x \equiv (-1)^n p_{n-1} b = 41\cdot 79(mod \, 221) = 145(mod\, 221)
+\end{gather*}
+
+
+
+\subsection*{C.}
+
+\begin{gather*}
+    2x \equiv 3 (mod\, 15) \\
+    2^{\varphi(15)} \equiv 2^8(mod\, 15) \\
+    2^{-1} \equiv 2^7 (mod\, 15) \\
+    x \equiv 3*2^7 (mod\ 15) \\
+    x \equiv 9 (mod\ 15) 
+\end{gather*}
+
+\subsection*{D.}
+
+\begin{gather*}
+    \begin{cases}
+        x \equiv 8(mod\, 15) &(1)\\
+        x \equiv 9(mod\, 13) &(2)\\
+        x \equiv 5(mod\, 14) &(3)
+    \end{cases}
+\end{gather*}
+
+Подставим $(1)$ уравнение в $(2)$: 
+\begin{gather*}
+    x = 15a + 8 \qquad (*) \\
+    15a + 8 \equiv 9(mod\, 13) \\
+    2a \equiv 1(mod\, 13) \\
+    a \equiv 7(mod\, 13) \Leftrightarrow a = 13b + 7 \\
+\end{gather*}
+
+Подставим $a$ в $(*)$:
+$$
+x = 15\cdot 13 b + 15 \cdot 7 + 8 \qquad (**) 
+$$
+
+Подставим $(**)$ в $(3)$:
+\begin{gather*}
+    15\cdot 13 b + 15 \cdot 7 + 8 \equiv 5 (mod\, 14) \\
+    15(13b +7) \equiv 11 (mod\, 14)\\
+    b \equiv 10 (mod\, 14) \Leftrightarrow b = 14c + 10
+\end{gather*}
+
+Подставим $c$ в $(**)$:
+\begin{gather*}
+    x = 15\cdot 13 \cdot 14 c + 15\cdot 13 \cdot 10 + 15\cdot 7 + 8 \Leftrightarrow \\
+    x \equiv 15 \cdot 130 + 15\cdot 7 + 8 (mod\, 15\cdot 13\cdot 14)\\
+    x \equiv 2063 (mod\, 2730)
+\end{gather*}
+
+
+\section*{Задача 2}
+\subsection*{A. $n \in \mathbb{Z}$. Доказать, что $n^2(n^2-5)(n^2+5) : 12$}
+
+Для того, чтобы доказать делимость на 12 необходимо доказать делимость на 3 и на 4.
+
+Возможные остатки при делении четного $n$ на $4$ : $0,1,2,3$, тогда остатки при делении $n^2$ на $4$ : $0,1$.
+Если в остатке 0, то очевидно, что число делится на 4.
+Если в остатке от деления 1, то $n^2$ - нечетное и $n^2 \pm 5$ - четные, а значит число делится на 4 всегда.
+
+
+Возможные остатки при делении четного $n$ на $3$ : $0,1,2$, тогда остатки при делении $n^2$ на $3$ : $0,1$.
+Если в остатке 0, то очевидно, что число делится на 3.
+Если в остатке от деления 1, то $n^2=3a+1$ и $n^2 + 5 = 3a+6 \, :3$, значит число делится на 3 всегда.
+
+Значит число делится на 12.
+
+\subsection*{B. Найти все целые неотрицательные $t$, при которых: $t^3 + 7 \,\vdots\, t -3$}
+В столбик разделим $t^3+7$ на $t-3$. 
+$$ (t-3)(t^2+3t+9)+34 \, \vdots \, t-3 \Leftrightarrow 34 \, \vdots \, t-3 $$
+
+Переберем все делители числа 34 (1, 2, 17, 34). Отсюда все возможные целые положительные значения $t$: 4, 5, 20, 37.
+
+\subsection*{C. Пусть $a,b,c \in \mathbb{N}$. Доказать, что если $a^2 + b^2 \,\vdots\, 11$, то $(a+b)^3+2(a^3+b^3) \,\vdots\, 3993$}
+
+\begin{gather*}
+    (a+b)^3+2(a^3+b^3) = a^3 + 3a^2 b+3a b^2 + 2a^3 + 3b^3 = \\
+    = 3(a^3+b^3+a^2b+ab^2) = 3((a^2+b^2)(a+b)) \\
+    (a^2+b^2)(a+b) \, \vdots \, 1221 = 11^3
+\end{gather*}
+
+\section*{Задача 3}
+
+\subsection*{A. Вычислить функцию Эйлера $\varphi(5005)$}
+Для вычисления воспользуемся свойством мултипликативности и разложим 5005 на степени простых множителей.
+\begin{gather*}
+    5005 = 13 * 11 * 7 * 5 \Leftrightarrow \\
+    \varphi(5005) = \varphi(13)\varphi(11)\varphi(7)\varphi(5) = 12*10*6*4 = 2880
+\end{gather*}
+
+\subsection*{B. Найти остаток от деления $333^{111}$ на $12$}
+\begin{gather*}
+    333^{111} \equiv x(mod\, 12) \\
+    9^{111} \equiv x(mod\, 12)\\
+    \text{Пусть: } 3y = x \, \text{,тогда } 9^{111} \equiv 3y(mod\, 12) \\
+    3 \cdot 9^{110} \equiv y(mod\, 4) \\
+\end{gather*}
+    
+    Так как $(4, 9) = 1 $, то имеет место теорема Эйлера: $9^2 \equiv 1(mod\, 4)$
+\begin{gather*}
+    3\cdot (9^2)^{55} \equiv 3 (mod\, 4) \\
+    x = 9
+\end{gather*}
+
+\section*{Задача 4}
+\begin{gather*}
+    \begin{cases}
+        [a,b] = 520 \\
+        a+b = 7 (a,b)
+    \end{cases} \\
+    \text{Пусть } (a,b) = d, a = dx, b = dy,\text{где, очевидно }(x,y)=1 \\
+    \begin{cases}
+        [a,b]=\frac{ab}{(a,b)}=\frac{dx\cdot dy}{d}=dxy = 520 \\
+        d(x+y)=7d
+    \end{cases} \\
+    \begin{cases}
+        dxy = 520 \\
+        x+y = 7
+    \end{cases}
+\end{gather*}
+
+Разложим 520 на простые делители и подберем все возможные решения для последней системы: $520 = 2^3 \cdot 5 \cdot 13 $. Очевидно что решения: $\{ x=5, y=2 \}$ и $\{ x=2, y=5 \}$, где $d=52$.
+
+Тогда решение изначальной системы запишется в виде:
+\begin{gather*}
+    \begin{cases}
+        a = 52\cdot 5 = 260\\
+        b = 52\cdot 2 = 104
+    \end{cases}
+    \text{или}\quad
+    \begin{cases}
+        a = 104 \\
+        b = 260
+    \end{cases}
+\end{gather*}
+
+\section*{Задача 5}
+\subsection*{A. Доказать, что $ 40^{30} - 5^{12} $ составное}
+$$ 40^{30} - 5^{12} = (40^{15} - 5^{6})(40^{15}+5^{6}) $$
+Значит число составное.
+
+\subsection*{B. Доказать, что $ 4^{34} + 2^{35} +1 $ составное}
+$$  4^{34} + 2^{35} +1 = (2^{34})^2 + 2\cdot 2^{34} + 1 = (2^{34} + 1)^2  $$
+Значит число составное.
+
+\subsection*{C. Доказать, что $ 4n^4 + 81 $ составное}
+$$ 4n^4 + 81 = (2n^2 + 9)^2 - 2\cdot (2n^2)\cdot 9 = (2n^2 + 9)^2 - (3\cdot 2n)^2 = (2n^2+9-3\cdot 2n)(2n^2+9+3\cdot 2n) $$
+Значит число составное.
+
+\section*{Задача 7}
+Пусть $f(x)$ - многочлен с целыми коэффициентами и $f(4)$ – нечетно. Доказать, что $f(x)$ не имеет четных корней.
+
+Для того чтобы были целые корни необходимо, чтобы $f(a) - f(b) \vdots (a-b)$, но тогда, если $a$ - корень, то $f(a) = 0$. И $ f(a) - f(4)$ - нечетное, а $ a-4 $ - четное. В таком случае не выполняется необходимое условие, а значит все корни нечетные.
+
+\section*{Задача 8}
+\subsection*{A. Решить в целых числах $37x + 7y =31$}
+$$ y = \frac{31-37x}{7} $$
+
+Переберем все возможные остатки от деления на 7:
+
+\begin{gather*}
+    \begin{aligned}
+        & 0: \qquad \frac{31}{7} & \notin \mathbb{Z} \\
+        & 1: \qquad -\frac{6}{7} & \notin \mathbb{Z} \\
+        & 2: \qquad -\frac{-43}{7} & \notin \mathbb{Z} \\
+        & 3: \qquad -\frac{80}{7} & \notin \mathbb{Z} \\
+        & 4: \qquad -\frac{117}{7} & \notin \mathbb{Z} \\
+        & 5: \qquad -\frac{154}{7} = -22 & \in \mathbb{Z} \\
+        & 6: \qquad -\frac{191}{7} & \notin \mathbb{Z} \\
+    \end{aligned}
+\end{gather*}
+
+Отсюда следует, что:
+
+$$
+\begin{cases}
+    y = -22(mod\, 7) = 6(mod\, 7)\\
+    x = 5(mod\, 7)
+\end{cases}
+$$
+
+\section*{Задача 9}
+\subsection*{B. Решить в целых числах $xy = -5x+y+20$}
+\begin{gather*}
+    y = \frac{-5x+20}{x-1} = 5(x-1) + 15 \Rightarrow 
+    \begin{cases}
+        y = 5(n-1) + 15 \\
+        x = n
+    \end{cases}
+    n \neq 1, n\in \mathbb{Z}
+\end{gather*}
+
+\section*{Задача 10}
+Доказать, что $35a^2 - 21 = 12b^2$ не имеет решения в целых числах
+
+Решим диафантово уравнение относительно квадратов:
+\begin{gather*}
+    35x-12y=12\\
+    \text{Методом перебора, частное решение: } \{ x=3, y=7 \} \\
+    35(x-3) - 12(y-7) = 0 \\
+    \begin{cases}
+        x = 3 + 12k \\
+        y = 7 + 35k
+    \end{cases} \\
+    \begin{cases}
+        a = \sqrt{3+12k}\\
+        b = \sqrt{7+35k}
+    \end{cases}
+\end{gather*}
+
+
+\end{document}

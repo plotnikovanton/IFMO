@@ -1,0 +1,8 @@
+#!/bin/bash
+for  i  in {1..40}
+do
+echo "a$i">>a$i.txt
+echo "b$i">>b$i.txt
+echo "c$i">>c$i.txt
+done
+
