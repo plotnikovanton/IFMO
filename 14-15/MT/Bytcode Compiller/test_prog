@@ -1,0 +1,10 @@
+int a = 150;
+int b = 30;
+
+while(a>0 && b>0) {
+    if(a>b) {
+        a = a % b;
+    } else {
+        b = b % a;
+    }
+}
