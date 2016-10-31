@@ -9,7 +9,7 @@ import Data.Char
 
 -- Finds max number from given string
 maxNumber :: String -> Integer
-maxNumber s | any isDigit s = let (x:xs) = splitLine s in foldl max x xs
+maxNumber s | any isDigit s = maximum $ splitLine s 
             | otherwise     = error "No digits here"
 
 -- Takes Integers from given string
