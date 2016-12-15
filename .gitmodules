@@ -1,3 +1,6 @@
 [submodule "16-17/shallow-water"]
 	path = 16-17/shallow-water
 	url = git@github.com:pltanton/shallow-water.git
+[submodule "16-17/EC/basic-tex-config"]
+	path = 16-17/EC/basic-tex-config
+	url = https://github.com/pltanton/basic-tex-config
