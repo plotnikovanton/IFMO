@@ -1,0 +1,27 @@
+\begin{problem}
+  Зашифровать часть депеши, заключенной в кавычки, используя биклавный шифр.
+  
+  Часть депеши: ''\textit{Перлюстрация-}''
+\end{problem}
+
+\begin{solution}
+  Первый ключ: 24-12-1877 $\rightarrow$ 13 $\rightarrow$ 3
+
+  Второй ключ: 2
+
+  Составим таблицу ключей для каждого символа
+
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+      \hline
+      п&е&р&л&ю&с&т&р&а&ц&и&я&- \\ \hline
+      3&5&2&4&1&3&5&2&4&1&3&5&2 \\ \hline
+    \end{tabular}
+  \end{table}
+
+  Зашифрованный текст:
+  \begin{addmargin}[2cm]{1cm}
+    6Ы М2 4Е 5А Н2 М7 7Ъ 4Е 9Е Ё8 4Ф 2Ц 7Д
+  \end{addmargin}
+\end{solution}

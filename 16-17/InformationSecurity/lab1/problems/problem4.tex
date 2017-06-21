@@ -1,0 +1,61 @@
+\begin{problem}
+  Начинающий криптограф составил шифр простой многозначной замены, который
+  частично приведён ниже. Усовершенствуйте данный шифр, используя таблицу
+  частот встречаемости букв и биграмм в тексте, таким образом, чтобы:
+
+  \begin{enumerate}
+    \item повысить криптостойкость шифра
+    \item устранить избыточность
+  \end{enumerate}
+
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+      & 1   & 2   & 3   & 4   & 5   \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      В  & 298 & 434 & 653 & 789 &     \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      Ж  & 867 & 545 & 357 & 875 & 423 \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      ка & 324 & 813 &     &     &     \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      Т  & 719 & 965 & 693 &     &     \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      яа & 122 &     &     &     &     \\ \hline
+    \end{tabular}
+  \end{table}
+
+\end{problem}
+
+\begin{solution}
+  \\
+  \begin{enumerate}
+    \item Буква ''Ж'' встречается очень редко (8~\%), достаточно использовать
+      два кода для её шифрования.
+    \item Следует добавить еще кодов для шифрования букв ''Т'' и ''В'',
+      поскольку они встречаются в 60~\% и 71~\% случаев, соответственно.
+    \item Биграма ''ка'' встречается часто (8 раз), следует увеличить число
+      кодов до 3 или 4.
+    \item Биграма ''яа'' вообще ни разу не встречается следует исключить ее из
+      таблицы кодирования.
+  \end{enumerate}
+
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|}
+      \hline
+      & 1   & 2   & 3   & 4   & 5   \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      В  & 298 & 434 & 653 & 789 & 423    \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      Ж  & 867 & 545 &  &  &  \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      ка & 324 & 813 & 122  &     &     \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      Т  & 719 & 965 & 693 & 875 & 357 \\ \hline
+      \multicolumn{6}{|c|}{$\dots$}        \\ \hline
+      яа &   &     &     &     &     \\ \hline
+    \end{tabular}
+  \end{table}
+\end{solution}

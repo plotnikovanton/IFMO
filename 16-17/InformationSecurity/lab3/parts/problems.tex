@@ -1,0 +1,44 @@
+\section{Задачи}
+
+\begin{problem}
+  Определить время перебора всех паролей с параметрами. 
+
+  Алфавит состоит из $A=59$ символов. Длина пароля составляет $L=5$ символов.
+  Скорость перебора $V=200$ паролей в секунду. После каждого из $m=0$
+  неправильно введенных паролей идет пауза в $v=0$ секунд.
+\end{problem}
+
+\begin{solution}
+  \begin{gather}
+    t = \frac{A^L}{V} = \frac{59^5}{200} \text{ сек}.
+    = 3574621.495 \text{ сек}.
+    \approx 41 \text{ дней}
+  \end{gather}
+\end{solution}
+
+\begin{problem}
+  Определить минимальную длину пароля, алфавит которого состоит из $A=59$
+  символов, время перебора которого было бы не меньше $t=50$ лет. Скорость
+  перебора $V=200$ паролей в секунду.
+\end{problem}
+
+\begin{solution}
+  \begin{equation}
+    L = \log_A(t \times V) = log_{59}(50 \times 365 \times 24 \times 60
+    \times 60 \times 200) \approx 6.5 < 7
+  \end{equation}
+\end{solution}
+
+\begin{problem}
+  Определить количество символов алфавита, пароль которого состоит из $L=9$
+  символов, время перебора которого было бы не меньше $t=50$ лет. Скорость
+  перебора $V=200$ паролей в секунду.
+\end{problem}
+
+\begin{solution}
+  \begin{equation}
+    A = \sqrt[L]{t \times V} =
+    \sqrt[9]{50 \times 365 \times 24 \times 60 \times 60 \times 200}
+    \approx 18.95 < 19
+  \end{equation}
+\end{solution}

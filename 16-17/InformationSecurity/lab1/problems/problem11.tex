@@ -1,0 +1,36 @@
+\begin{problem}
+  Придумайте запоминающийся лозунг, состоящий из десяти букв, и зашифруйте
+  нижеприведенное сообщение с использованием простого квадратного шифра.
+
+  Сообщение: ''\textit{АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ}''
+\end{problem}
+
+\begin{solution}
+  В качестве лозунга выбрана фраза ''\textit{Хороший мак}''.
+  
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|r|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \multicolumn{1}{|l|}{ } & \multicolumn{1}{r|}{1} & \multicolumn{1}{r|}{2} & \multicolumn{1}{r|}{3} & \multicolumn{1}{r|}{4} & \multicolumn{1}{r|}{5} & \multicolumn{1}{r|}{6} & \multicolumn{1}{r|}{7} & \multicolumn{1}{r|}{8} & \multicolumn{1}{r|}{9} & \multicolumn{1}{r|}{0} \\ \hline
+  1 & \textbf{х} & ц & ч & ш & щ & ъ & ы & ь & э & ю \\ \hline
+  2 & \textbf{о} & п & р & с & т & у & ф & х & ц & ч \\ \hline
+  3 & \textbf{р} & с & т & у & ф & х & ц & ч & ш & щ \\ \hline
+  4 & \textbf{о} & п & р & с & т & у & ф & х & ц & ч \\ \hline
+  5 & \textbf{ш} & щ & ъ & ы & ь & э & ю & я & а & б \\ \hline
+  6 & \textbf{и} & й & к & л & м & н & о & п & р & с \\ \hline
+  7 & \textbf{й} & к & л & м & н & о & п & р & с & т \\ \hline
+  8 & \textbf{м} & н & о & п & р & с & т & у & ф & х \\ \hline
+  9 & \textbf{а} & б & в & г & д & е & ё & ж & з & и \\ \hline
+  0 & \textbf{к} & л & м & н & о & п & р & с & т & у \\ \hline
+  \end{tabular}
+  \label{}
+  \end{table}
+
+  Зашифрованный текст:
+  \begin{addmargin}[2cm]{1cm}
+    19 29 39 49 59 69 79 89 99 16 26 36 46 56 66 76 86 96 23 33 43 53 63 73 83
+    93 25 35 45 55 65 75 85
+  \end{addmargin}
+
+\end{solution}

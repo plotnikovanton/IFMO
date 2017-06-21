@@ -1,0 +1,25 @@
+\begin{problem}
+  Определить результаты предоставления доступа в автоматизированной системе с
+  мандатным принципом разграничения доступа.
+\end{problem}
+
+\begin{solution}
+  Таблица
+
+  \begin{table}[H]
+  \centering
+  \begin{tabular}{|l|c|c|c|}
+  \hline
+  Субъект & Операция & Объект & Результат \\ \hline
+  User1 & R & File1 & + \\ \hline
+  User1 & W & File1 & + \\ \hline
+  User2 & R & File4 & + \\ \hline
+  User2 & W & File3 & - \\ \hline
+  User3 & W & File3 & - \\ \hline
+  Admin & R & File1 & - \\ \hline
+  User4 & R & File12 & - \\ \hline
+  User5 & W & File11 & - \\ \hline
+  \end{tabular}
+  \end{table}
+
+\end{solution}

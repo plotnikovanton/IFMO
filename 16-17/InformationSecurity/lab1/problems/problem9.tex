@@ -1,0 +1,19 @@
+\begin{problem}
+  Исправить противоречия в правах доступа.
+\end{problem}
+
+\begin{solution}
+  Таблица
+
+  \begin{table}[H]
+  \centering
+  \begin{tabular}{|l|c|c|c|}
+  \hline
+   & File1 (1) & File2 (2) & File3 (3) \\ \hline
+  User1 (1) & RW & - & W \\ \hline
+  User2 (2) & - & RW & W \\ \hline
+  User3 (3) & R & R & RW \\ \hline
+  User4 (4) & R & RW & W \\ \hline
+  \end{tabular}
+  \end{table}
+\end{solution}
