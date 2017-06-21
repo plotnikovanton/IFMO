@@ -1,0 +1,11 @@
+\providecommand \autonum@processReference [2]{}
+\select@language {russian}
+\contentsline {section}{\numberline {1}Введение}{3}{section.1}
+\contentsline {section}{\numberline {2}Основная часть}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Физическая аппаратура}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Квантовые вычисления}{5}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Фазовращатель}{5}{subsubsection.2.2.1}
+\contentsline {subsection}{\numberline {2.3}Светиделитель}{5}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Нелинейные керровские среды}{6}{subsubsection.2.3.1}
+\contentsline {section}{\numberline {3}Заключение}{7}{section.3}
+\contentsline {section}{\numberline {4}Список литературы}{8}{section.4}

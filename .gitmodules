@@ -4,3 +4,30 @@
 [submodule "16-17/EC/basic-tex-config"]
 	path = 16-17/EC/basic-tex-config
 	url = https://github.com/pltanton/basic-tex-config
+[submodule "16-17/QuantumComputer/CourseWork/basic-tex-config"]
+	path = 16-17/QuantumComputer/CourseWork/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git
+[submodule "16-17/InformationSecurity/lab1/basic-tex-config"]
+	path = 16-17/InformationSecurity/lab1/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git
+[submodule "16-17/InformationSecurity/lab2/basic-tex-config"]
+	path = 16-17/InformationSecurity/lab2/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git
+[submodule "16-17/InformationSecurity/lab3/basic-tex-config"]
+	path = 16-17/InformationSecurity/lab3/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git
+[submodule "16-17/InformationSecurity/lab4/basic-tex-config"]
+	path = 16-17/InformationSecurity/lab4/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git
+[submodule "16-17/QuantumComputer/lab1/basic-tex-config"]
+	path = 16-17/QuantumComputer/lab1/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git
+[submodule "16-17/QuantumComputer/lab2/basic-tex-config"]
+	path = 16-17/QuantumComputer/lab2/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git
+[submodule "16-17/QuantumComputer/lab3/basic-tex-config"]
+	path = 16-17/QuantumComputer/lab3/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git
+[submodule "16-17/QuantumComputer/lab4/basic-tex-config"]
+	path = 16-17/QuantumComputer/lab4/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git

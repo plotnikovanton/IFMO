@@ -1,0 +1,162 @@
+\documentclass[a4paper,aps, 14pt, musixtex, superscriptaddress, centertags, includefoot,]{extarticle}
+\usepackage[14pt]{extsizes}
+\renewcommand{\rmdefault}{ftm}
+\usepackage{geometry} % Меняем поля страницы
+\geometry{left=1cm}
+\geometry{right=1.5cm}
+\geometry{top=1cm}
+\geometry{bottom=2cm}
+\usepackage[english,russian]{babel}
+\usepackage[cp1251]{inputenc}
+\usepackage[colorlinks=true, unicode=true]{hyperref}
+
+\usepackage{euscript}
+\usepackage{longtable}
+\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\graphicspath{}
+\usepackage{indentfirst}
+\usepackage{cite}
+\usepackage{amsthm,amssymb, amsmath}
+\usepackage{csvsimple}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{rotating}
+%\usepackage[leqno]{amsmath}
+%\usepackage{caption}
+%\captionsetup{tablewithin=section}
+%\usepackage{listings} %% собственно, это и есть пакет listings
+
+
+\renewcommand{\baselinestretch}{0.9}
+\parindent=1.25cm
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+
+\pagestyle{empty}
+
+%\bibliographystyle{unsrt}
+
+\begin{document}
+
+\begin{center}
+\thispagestyle{empty}
+\text{\large Санкт-Петербургский национальный исследовательский университет} \\[0.5cm]
+\text{\large информационных технологий, механики и оптики} \\[5cm]
+
+
+\textbf{\large Лабораторная работа №4}\\[1.2cm]
+\textbf{\large по квантовому компьютеру}\\[1.2cm]
+\textbf{\Large Квантовый алгоритм Гровера}\\[5cm]
+
+
+
+\begin{flushleft}
+
+\text{}
+
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad Выполнила:
+
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad студентка группы А4100
+
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad Арасланова В.А.
+\\[0.5cm]
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad Преподаватель:
+
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad Попов И.Ю. \\[1cm]
+
+\end{flushleft}
+
+
+\vspace{4cm}
+
+\text{ Санкт-Петербург}
+
+ 2017
+
+\end{center}
+
+\newpage
+
+\setlength{\baselineskip}{1.7\baselineskip}
+
+\renewcommand{\baselinestretch}{1.2}
+
+%\tableofcontents
+
+\newpage
+
+
+\textbf{\large 1. Цель и задачи лабораторной работы: }
+
+\textbf{ Цель работы:} Изучение работы алгоритма Гровера.
+
+\textbf{ Задачи:}
+
+1.	Определить номер элемента который ищется в базе.
+
+2.	Определить количество итераций необходимо в алгоритме для получения вероятности верного ответа близко к 1.
+
+3.	Найти зависимость количества итераций от количества элементов в базе.
+
+4.	Сравнить предыдущий результат с самым эффективным классическим алгоритмом (перебор).
+
+5.	Объяснить, почему при дальнейшем увеличении числа итераций эффективность падает.
+
+
+
+
+
+
+\textbf{\large 2. Ход работы}
+
+Количество кубитов $n = 4$, число элементов в базе $N = 2^n = 16$
+
+Номер элемента который ищется в базе --- 3.
+
+ \begin{figure}[h!]
+ 	\centering
+ 	\includegraphics[scale=0.9]{graf_4_1}
+ 	\caption{Гистограмма работы алгоритма Гровера ($R=3$)}
+ 	\label{fig:41}
+ \end{figure}
+
+Количество итераций необходимых для того чтобы ответ был с высокой вероятности для случая 4 кубитов, равен 3
+
+
+ \begin{figure}[h!]
+ 	\centering
+ 	\includegraphics[scale=0.9]{graf_4_2}
+ 	\caption{Амплитуды вероятностей ($R=3$)}
+ 	\label{fig:42}
+ \end{figure}
+
+ Верхняя оценка числа итераций равна ($M$ - количество решений удовлетворяющих критерию поиска):
+ $R \leqslant \left[\frac{\pi}{4} \sqrt{\frac{N}{M}}\right]$
+
+ В нашем случае $M = 1$ и выражение принимает вид :
+$R \leqslant \left[\frac{\pi}{4} \sqrt{N}\right]$
+
+ Эффективность работы алгоритма Гровера $O(\sqrt{N})$, в то время когда классический алгоритм поиска требует $O(N)$ операций. Как мы видим алгоритм Гровера позволяет получить квадратичное улучшение в задаче поиска.
+
+  \begin{figure}[h!]
+  	\centering
+  	\includegraphics[scale=0.8]{graf_4_3}
+  	\caption{Амплитуды вероятностей ($R=5$)}
+  	\label{fig:43}
+  \end{figure}
+
+Суть алгоритма заключается в изменении целевого состояния за счет  убывания амплитуды всех остальных состояний. В том случае когда мы совершаем дополнительные итерации амплитуды всех остальных состояний становятся отрицательными, а следовательно и среднее значение также отрицательно, а так как амплитуда искомого элемента откладывается от среднего значения, то в результате мы получаем уменьшение амплитуды искомого элемента (рис. \ref{fig:43}).
+
+
+
+
+
+\textbf{\large3. Вывод}
+
+ В ходе выполнения работы изучили работу квантового алгоритма поиска (алгоритм Гровера). Определили количество итераций необходимых для определения искомого элемента с вероятностью близкой к единице $R = 3$, во общем виде зависимость итераций от количества элементов в базе выражается $R \leqslant \left[\frac{\pi}{4} \sqrt{\frac{N}{M}}\right]$. Алгоритм Гровера позволяет получить квадратичное улучшение по сравнению с классическим алгоритмом поиска.  Увеличение количества итераций ведет к падению эффективности, что вызвано изменением знака среднего значения амплитуд.
+\\
+
+
+\end{document} 

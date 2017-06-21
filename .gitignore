@@ -13,3 +13,6 @@ gradle
 *.fdb_latexmk
 *.aux
 *.fls
+*.synctex.gz
+*.out
+_minted*
