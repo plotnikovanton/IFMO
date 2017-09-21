@@ -1,0 +1,62 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{nty/global/}
+    \entry{psychologsru}{online}{}
+      \field{sortinit}{А}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labeltitlesource}{title}
+      \field{title}{Аналогия}
+      \verb{url}
+      \verb http://www.psychologos.ru/articles/view/analogiya
+      \endverb
+    \endentry
+    \entry{uchilnet}{online}{}
+      \field{sortinit}{М}
+      \field{sortinithash}{ac85f1771e46bf524a73d2d029013cae}
+      \field{labeltitlesource}{title}
+      \field{title}{Место аналогии в обучении математике в школе}
+      \verb{url}
+      \verb https://uchil.net/?cm=47872
+      \endverb
+    \endentry
+    \entry{mord}{book}{}
+      \name{author}{1}{}{%
+        {{hash=cebedb8e6af5cedf195ac814e775f57b}{%
+           family={Мордухай-Болтовский},
+           familyi={М\bibinithyphendelim Б\bibinitperiod},
+           given={ДД},
+           giveni={Д\bibinitperiod}}}%
+      }
+      \strng{namehash}{cebedb8e6af5cedf195ac814e775f57b}
+      \strng{fullhash}{cebedb8e6af5cedf195ac814e775f57b}
+      \strng{authornamehash}{cebedb8e6af5cedf195ac814e775f57b}
+      \strng{authorfullhash}{cebedb8e6af5cedf195ac814e775f57b}
+      \field{sortinit}{М}
+      \field{sortinithash}{ac85f1771e46bf524a73d2d029013cae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Философия. Психология. Математика}
+      \field{year}{1998}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

@@ -1,0 +1,24 @@
+\providecommand \autonum@processReference [2]{}
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {russian}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Введение}{3}{section.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1}Сущность аналогии и её виды}{3}{subsection.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Основное содержание}{4}{section.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1}Общий разбор темы}{4}{subsection.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2}Дифференциальные уравнения}{5}{subsection.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3}Комплексные числа}{6}{subsection.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4}Абелев интеграл}{6}{subsection.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5}Элементарные аналогии}{7}{subsection.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6}Четырехмерное пространство}{8}{subsection.2.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Заключение}{10}{section.3}

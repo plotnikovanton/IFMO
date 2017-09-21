@@ -1,0 +1,15 @@
+[0] Config.pm:354> INFO - This is Biber 2.7
+[0] Config.pm:357> INFO - Logfile is 'article.blg'
+[25] biber:303> INFO - === Fri Jun 23, 2017, 07:57:02
+[37] Biber.pm:359> INFO - Reading 'article.bcf'
+[103] Biber.pm:835> INFO - Found 3 citekeys in bib section 0
+[114] Biber.pm:3670> INFO - Processing section 0
+[125] Biber.pm:3840> INFO - Looking for bibtex format file 'lib.bib' for section 0
+[126] bibtex.pm:1435> INFO - Decoding LaTeX character macros into UTF-8
+[129] bibtex.pm:1292> INFO - Found BibTeX data source 'lib.bib'
+[145] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[145] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[145] Biber.pm:3499> INFO - Sorting list 'nty/global/' of type 'entry' with scheme 'nty' and locale 'ru-RU'
+[145] Biber.pm:3505> INFO - No sort tailoring available for locale 'ru-RU'
+[148] bbl.pm:608> INFO - Writing 'article.bbl' with encoding 'UTF-8'
+[149] bbl.pm:712> INFO - Output to article.bbl

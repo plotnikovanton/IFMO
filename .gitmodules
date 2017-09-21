@@ -31,3 +31,6 @@
 [submodule "16-17/QuantumComputer/lab4/basic-tex-config"]
 	path = 16-17/QuantumComputer/lab4/basic-tex-config
 	url = git@github.com:pltanton/basic-tex-config.git
+[submodule "16-17/Psychology/basic-tex-config"]
+	path = 16-17/Psychology/basic-tex-config
+	url = git@github.com:pltanton/basic-tex-config.git

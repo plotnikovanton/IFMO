@@ -1,0 +1,190 @@
+% ITMO Beamer Theme
+% Author: Plotnikov Anton
+% 2016
+
+% Dependencees
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{calc}
+\usepackage{etoolbox}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\hypersetup{%
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=white,       % color of internal links (change box color with linkbordercolor)
+    citecolor=ITMOblue,     % color of links to bibliography
+    filecolor=ITMOblue,     % color of file links
+    urlcolor=ITMOblue       % color of external links
+}
+
+% Define and set fonts
+\usepackage{fontspec}
+\setsansfont[
+    BoldFont={ALSSchlangeslab-Bold},
+    ItalicFont={ALSSchlangeslab-Light}
+]{ALSSchlangeslab}
+\usefonttheme[onlymath]{serif}
+
+% Some simple beamer configuration
+\setbeamertemplate{navigation symbols}{} % Disable navigation
+\setbeamertemplate{itemize items}[circle]   % Style of bullet points
+%\setbeamertemplate{theorems}[numbered]     % Number objects such as theorems and definitions
+
+% Deal with margins
+\setbeamersize{text margin left=1.8em,
+               text margin right=1.8em}
+
+% Define colors
+\definecolor{ITMOblue}{cmyk}{0.94,0.78,0,0}
+\definecolor{ITMOgreen}{cmyk}{0.45,0,1,0}
+\definecolor{ITMOred}{cmyk}{0,1,0.7,0}
+\definecolor{ITMOorange}{cmyk}{0,0.59,1,0}
+\setbeamercolor{WhiteOnBlue}{bg=ITMOblue,fg=white}
+\setbeamercolor{BlueOnWhite}{fg=ITMOblue,bg=white}
+
+% Define images
+\newcommand{\logoHor}{./beamer-itmo/itmo_logo_rus_goriz_blue.eps}
+\newcommand{\logoVert}{./beamer-itmo/itmo_logo_rus_vert_blue.eps}
+
+% Set colors
+\usecolortheme[named=ITMOblue]{structure}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{frametitle}{bg=ITMOblue}
+\setbeamercolor{frametitle}{fg=white}
+\setbeamercolor{headline}{bg=ITMOblue}
+\setbeamercolor{alerted text}{fg=ITMOred}
+\setbeamercolor{itemize item}{fg=ITMOblue}
+\setbeamercolor{itemize subitem}{fg=ITMOblue}
+\setbeamercolor{itemize subsubitem}{fg=ITMOblue}
+\setbeamercolor{block title example}{fg=ITMOgreen}
+\AtBeginEnvironment{exampleblock}{%
+    \setbeamercolor{itemize item}{fg=ITMOgreen}
+    \setbeamercolor{itemize subitem}{fg=ITMOgreen}
+    \setbeamercolor{itemize subsubitem}{fg=ITMOgreen}
+                                 }
+\setbeamercolor{palette primary}{bg=ITMOblue}
+\setbeamercolor{palette primary}{fg=white}
+\setbeamercolor{palette secondary}{bg=ITMOblue}
+\setbeamercolor{palette secondary}{fg=white}
+\setbeamercolor{palette tertiary}{bg=ITMOblue}
+\setbeamercolor{palette tertiary}{fg=white}
+
+% Custop bulletpoints in items and subitems
+\setbeamertemplate{itemize item}{%
+	\tikz{%
+		\draw[fill=ITMOblue,draw=none] (0, 0) rectangle(0.08, 0.08);
+		\draw[fill=ITMOblue,draw=none] (0.08, 0.08) rectangle(0.16, 0.16);
+		\draw[fill=ITMOblue,draw=none] (0, 0.16) rectangle(0.08, 0.24);
+	}
+}
+\setbeamertemplate{itemize subitem}{%
+	\tikz{%
+		\draw[fill=ITMOblue,draw=none] (0, 0) rectangle(0.075, 0.075);
+		\draw[fill=ITMOblue,draw=none] (0.075, 0.075) rectangle(0.15, 0.15);
+		\draw[fill=ITMOblue,draw=none] (0, 0.15) rectangle(0.075, 0.225);
+	}
+}
+
+
+\newcommand{\ITMOthankspage}{%
+    \begingroup
+    \setbeamercolor{background canvas}{bg=ITMOblue}
+    \setbeamertemplate{footline}{}
+    \begin{frame}[c,noframenumbering]
+        \color{white}
+        \minipage[c][0.9\textheight]{\columnwidth}
+            \begin{center}
+                \begin{figure}
+                    \includegraphics[height=0.3\paperheight]{\logoVert}
+                \end{figure}
+
+                \vfill
+
+                \Huge\textbf{Спасибо за внимание!}
+
+                \vfill
+
+                \normalsize\textbf{\insertshortauthor}
+                \\
+                \vspace{1em}
+                \footnotesize\insertdate
+            \end{center}
+        \endminipage
+    \end{frame}
+    \endgroup
+}
+
+
+% Custom title page
+\newcommand{\ITMOtitlepage}{%
+    \begingroup
+    \setbeamercolor{background canvas}{bg=ITMOblue}
+    \setbeamertemplate{footline}{}
+    \color{white}
+    \begin{frame}[c,noframenumbering]
+        \minipage[c][0.9\textheight]{\columnwidth}
+        \begin{center}
+            \begin{figure}
+                \includegraphics[height=0.35\paperheight]{\logoVert}
+            \end{figure}
+            \large\textbf{\inserttitle}
+            \\
+            \insertsubtitle
+
+            \vfill
+
+            \tiny\insertinstitute
+            \\
+            \small\textbf{\insertauthor}
+            \vfill
+            \tiny\insertdate
+        \end{center}
+        \endminipage
+    \end{frame}
+    \endgroup
+}
+
+
+% Append logotype to title
+\addtobeamertemplate{frametitle}{}{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=north east,yshift=0pt] at (current page.north
+            east){\includegraphics[height=17pt]{\logoHor}};
+    \end{tikzpicture}
+    \vspace{-1.2em}
+}
+
+
+% Blocks
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamercolor{block title}{fg=white,bg=ITMOblue}
+\setbeamercolor{block body}{bg=ITMOblue!10}
+\setbeamercolor{block title example}{fg=white,bg=ITMOgreen}
+\setbeamercolor{block body example}{bg=ITMOgreen!10}
+\setbeamercolor{block title alerted}{fg=white,bg=ITMOred}
+\setbeamercolor{block body alerted}{bg=ITMOred!10}
+
+\setbeamerfont{block title}{series=\bfseries,size=\footnotesize}
+
+\makeatletter
+\pgfdeclareverticalshading[lower.bg,upper.bg]{bmb@transition}{200cm}{%
+  color(0pt)=(upper.bg!40); color(2pt)=(upper.bg!40); color(3pt)=(upper.bg!40)}
+\makeatother
+
+% Footline
+\setbeamertemplate{footline}
+{%
+    \leavevmode%
+    \hbox{%
+        \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.3ex,dp=1ex,center]{WhiteOnBlue}%
+            \usebeamerfont{author in head/foot}\textbf{\insertshortauthor}
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.3ex,dp=1ex,center]{WhiteOnBlue}%
+            \usebeamerfont{title in head/foot}\textbf{\insertshorttitle}
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.3ex,dp=1ex,right]{WhiteOnBlue}%
+            \usebeamerfont{date in head/foot}\textbf{\insertshortdate{}}\hspace*{2em}
+            \textbf{\insertframenumber{}} / {\inserttotalframenumber}\hspace*{2ex}
+    \end{beamercolorbox}}%
+}

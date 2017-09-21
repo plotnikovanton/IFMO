@@ -1,0 +1,40 @@
+\documentclass{article}
+%\usepackage[margin=2cm]{geometry}
+
+\input{./basic-tex-config/preamble.tex}
+\usepackage{tikz}
+
+\usepackage[backend=biber]{biblatex}
+
+\addbibresource{lib.bib}
+\nocite{uchilnet}
+\nocite{mord}
+
+\graphicspath{{./images/}}
+
+\title{КУРСОВАЯ РАБОТА ПО КУРСУ\\ <<ПСИХОЛОГИЯ МАТЕМАТИЧЕСКОГО МЫШЛЕНИЯ>>\\
+Аналогия в решении математических задач}
+\date{Санкт-Петербург, 2017}
+\author{Плотников Антон, А4101}
+
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\input{parts/intro.tex}
+\newpage
+
+\input{parts/main.tex}
+\newpage
+
+\input{parts/conclusion.tex}
+\newpage
+
+\printbibliography%
+
+\end{document}
